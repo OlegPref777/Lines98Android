@@ -665,7 +665,7 @@ public class GameBoard {
 	private Position selectedPos;
 
 	private int left = 1;
-	private int top = 53;
+	private int top = Square.SIZE + 8;
 
 	private int[] nextColorArray = new int[3];
 	private List<Position> nextPositionList;

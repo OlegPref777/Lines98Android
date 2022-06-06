@@ -9,6 +9,7 @@ import android.os.Handler;
 
 import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Graphics;
+import ru.ls.lines98.game.Square;
 import ru.ls.lines98.game.common.Timer;
 import ru.ls.lines98.game.option.GameInfo;
 import ru.ls.lines98.game.option.NextBallDisplayType;
@@ -98,8 +99,8 @@ public class GameInfoBoard {
 
 	private int left = 1;
 	private int top = 2;
-	private int width = 45 * 9;
-	private int height = 50;
+	private int width = Square.SIZE * 9;
+	private int height = Square.SIZE + 5;
 
 	private GamePanel gamePanel;
 

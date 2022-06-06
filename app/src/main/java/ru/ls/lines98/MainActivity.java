@@ -1,5 +1,7 @@
 package ru.ls.lines98;
 
+import static ru.ls.lines98.game.Ball.MATURITY_SIZE;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -22,6 +24,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import ru.ls.lines98.databinding.ActivityMainBinding;
+import ru.ls.lines98.game.Ball;
 import ru.ls.lines98.game.GameBoard;
 import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Square;
@@ -63,6 +66,8 @@ public class MainActivity extends Activity {
 //        demoview = new DemoView(this);
 //        setContentView(demoview);
         Square.SIZE = getDisplaySize().x / 9;
+        Ball.MATURITY_SIZE = Square.SIZE * 33 / 45;
+        Ball.GROWING_SIZE = Square.SIZE * 9 / 45;
 
         setTitle("Lines98");
 

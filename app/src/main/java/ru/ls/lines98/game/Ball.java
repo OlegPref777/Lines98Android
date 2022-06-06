@@ -173,6 +173,6 @@ public class Ball extends PrimitiveBall {
 	private boolean isUpDirect = true;
 	private Thread animateThread;
 
-	public static final int MATURITY_SIZE = 33;
-	public static final int GROWING_SIZE = 9;
+	public static int MATURITY_SIZE = 33;
+	public static int GROWING_SIZE = 9;
 }

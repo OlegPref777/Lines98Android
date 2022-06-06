@@ -1,14 +1,17 @@
 package ru.ls.lines98.game.status;
 import android.graphics.Canvas;
 
+import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.game.Graphics;
+import ru.ls.lines98.game.Square;
 
 
 public class Score {
 
 	public Score() {
+		int koefficient = Square.SIZE / 45;
 		for (int i = 0; i < digits.length; i++) {
-			digits[i] = new Digit(12, 11, 3);
+			digits[i] = new Digit(12 * koefficient, 11 * koefficient, 3 * koefficient);
 		}
 	}
 

@@ -78,10 +78,10 @@ public class Digit {
 	private void drawHorizontalLed(Graphics g, int l, int t, int c){
 		g.setColor(c);
 		g.fillRect(l, t, ledHorizontalWidth, hOutside);
-		g.fillRect(l - hOutside, t + hOutside, ledHorizontalWidth + 2
-				* hOutside, hInside);
+		g.fillRect(l - hOutside, t + hOutside, ledHorizontalWidth + 2 * hOutside, hInside);
 		g.fillRect(l, t + hOutside + hInside, ledHorizontalWidth, hOutside);
 	}
+
 	private void drawHorizontalLed(Canvas canvas, int l, int t, int c) {
 		Graphics g = new Graphics(canvas);
 		drawHorizontalLed(g, l, t, c);

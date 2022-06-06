@@ -4,14 +4,14 @@ import android.graphics.Canvas;
 
 import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.game.Graphics;
+import ru.ls.lines98.game.Square;
 
 public class DigitalClock {
 
 	public DigitalClock() {
+		int koefficient = Square.SIZE / 45;;
 		for (int i = 0; i < digits.length; i++) {
-			int width = MainActivity.getDisplaySize().x;
-			int koefficient = width / 2;
-			digits[i] = new Digit(5 * koefficient, 3 * koefficient, koefficient);
+			digits[i] = new Digit(9 * koefficient, 8 * koefficient, 3 * koefficient);
 		}
 	}
 
