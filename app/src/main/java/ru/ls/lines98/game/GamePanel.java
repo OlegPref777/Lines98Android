@@ -2,8 +2,11 @@ package ru.ls.lines98.game;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import ru.ls.lines98.MainActivity;
 
@@ -11,6 +14,15 @@ public class GamePanel extends View {
 
 	public GamePanel(Context context){
 		super(context);
+		this.gameFrame = (MainActivity) context;
+	}
+	public GamePanel(Context context, @Nullable AttributeSet attrs) {
+		super(context, attrs);
+		this.gameFrame = (MainActivity) context;
+	}
+
+	public GamePanel(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
 		this.gameFrame = (MainActivity) context;
 	}
 
@@ -27,18 +39,19 @@ public class GamePanel extends View {
 					int y = (int) motionEvent.getY();
 					Position pos = gameBoard.squareFromMousePos(x, y);
 					Square square = gameBoard.getSquare(pos);
-
-					if (square.getBallState() == BallState.MATURE) {
-						gameBoard.selectBall(pos);
-					} else {
-						if (gameBoard.getSelectedPosition() != null) {
-							if (gameBoard.moveTo(pos)) {
+					if (square != null){
+						if (square.getBallState() == BallState.MATURE) {
+							gameBoard.selectBall(pos);
+						} else {
+							if (gameBoard.getSelectedPosition() != null) {
+								if (gameBoard.moveTo(pos)) {
+								}
 							}
 						}
-					}
 
-					if (gameBoard.isGameOver()) {
-						gameFrame.endGame();
+						if (gameBoard.isGameOver()) {
+							gameFrame.endGame();
+						}
 					}
 				}
 				return true;

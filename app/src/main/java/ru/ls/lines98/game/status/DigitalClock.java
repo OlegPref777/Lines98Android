@@ -8,6 +8,12 @@ import ru.ls.lines98.game.Square;
 
 public class DigitalClock {
 
+	private int seconds;
+	private int left;
+	private int top;
+
+	private Digit[] digits = new Digit[5];
+
 	public DigitalClock() {
 		int koefficient = Square.SIZE / 45;;
 		for (int i = 0; i < digits.length; i++) {
@@ -30,10 +36,6 @@ public class DigitalClock {
 		tmpLeft = left + 3 * digits[4].getWidth() + 3 + 2 + 1;
 		g.fillRect(tmpLeft, top + tmp, 1, 1);
 		g.fillRect(tmpLeft, top + 3 * tmp, 1, 1);
-	}
-	public void draw(Canvas canvas) {
-		Graphics g = new Graphics(canvas);
-		draw(g);
 	}
 
 	public int getSeconds() {
@@ -99,9 +101,4 @@ public class DigitalClock {
 		return String.format("%d:%d:%d", hour, minute, second);
 	}
 
-	private int seconds;
-	private int left;
-	private int top;
-
-	private Digit[] digits = new Digit[5];
 }

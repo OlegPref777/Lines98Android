@@ -1,5 +1,6 @@
 package ru.ls.lines98.game.status;
 
+import ru.ls.lines98.game.Ball;
 import ru.ls.lines98.game.Graphics;
 import ru.ls.lines98.game.common.PrimitiveBall;
 
@@ -7,7 +8,7 @@ public class NextBallBoard {
 
 	public NextBallBoard() {
 		for (int i = 0; i < nextBallArray.length; i++) {
-			nextBallArray[i] = new PrimitiveBall(23, 23);
+			nextBallArray[i] = new PrimitiveBall((int)(Ball.MATURITY_SIZE * 0.7), (int)(Ball.MATURITY_SIZE * 0.7));
 		}
 
 	}

@@ -67,6 +67,7 @@ public class PrimitiveBall {
 	}
 
 	public void draw(Graphics g2){
+		Paint oldPaint = g2.getPaint();
 		int dx = (int) (width / Math.sqrt(2));
 		int dy = (int) (height / Math.sqrt(2));
 		Point leftBottomPoint = new Point(getLeft() + (width - dx) / 2, getTop() + (height + dy) / 2);
@@ -85,6 +86,7 @@ public class PrimitiveBall {
 		g2.setPaint(paint2);
 		g2.fillArc(getLeft(), getTop(), width, height, -46, 182);
 
+		g2.setPaint(oldPaint);
 	}
 	@RequiresApi(api = Build.VERSION_CODES.O)
 	public void draw(Canvas canvas) {

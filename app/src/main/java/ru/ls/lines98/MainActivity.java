@@ -7,28 +7,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.service.controls.Control;
 import android.text.InputType;
 import android.view.Display;
-import android.view.View;
 
-import androidx.core.view.MenuCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import ru.ls.lines98.databinding.ActivityMainBinding;
 import ru.ls.lines98.game.Ball;
 import ru.ls.lines98.game.GameBoard;
 import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Square;
-import ru.ls.lines98.game.common.WindowUtil;
+
 import ru.ls.lines98.game.option.GameType;
 import ru.ls.lines98.game.option.OptionDialog;
 import ru.ls.lines98.game.status.GameInfoBoard;
@@ -71,8 +58,10 @@ public class MainActivity extends Activity {
 
         setTitle("Lines98");
 
-        gamePanel = new GamePanel(this);
-        setContentView(gamePanel);
+
+        setContentView(R.layout.activity_main);
+        gamePanel = findViewById(R.id.gamePanel);
+        //setContentView(gamePanel);
 
         GameBoard gameBoard = new GameBoard(gamePanel);
         gamePanel.setGameBoard(gameBoard);

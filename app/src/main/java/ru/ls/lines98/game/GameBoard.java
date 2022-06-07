@@ -77,7 +77,11 @@ public class GameBoard {
 	}
 
 	public Square getSquare(Position pos) {
-		return squareArray[pos.x][pos.y];
+		if (pos != null){
+			return squareArray[pos.x][pos.y];
+		}else {
+			return null;
+		}
 	}
 
 	public Position getSelectedPosition() {

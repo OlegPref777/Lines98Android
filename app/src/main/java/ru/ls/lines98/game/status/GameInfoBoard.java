@@ -25,12 +25,14 @@ public class GameInfoBoard {
 		score.setLeft(left + width - score.getWidth() - 10);
 		score.setTop(top + (height - score.getHeight()) / 2);
 
-		clock.setLeft(left + (width - clock.getWidth()) / 2);
-		clock.setTop(36);
 
 		nextBallBoard.setLeft(left + (width - nextBallBoard.getWidth()) / 2);
-		nextBallBoard.setTop(11);
+		nextBallBoard.setTop(1);
 		nextBallBoard.setNextColors(new int[] { Color.BLACK, Color.BLACK, Color.BLACK });
+
+		clock.setLeft(left + (width - clock.getWidth()) / 2);
+		clock.setTop(nextBallBoard.getHeight() + (int)(nextBallBoard.getHeight() * 0.05));
+
 
 		clockTimer.start();
 
@@ -43,6 +45,7 @@ public class GameInfoBoard {
 		g.fill3DRect(left, top, width, height, true);
 		highestScore.draw(g);
 		score.draw(g);
+		int color = g.getColor();
 
 		NextBallDisplayType displayType = GameInfo.getCurrentInstance().getNextBallDisplayType();
 		if (displayType == NextBallDisplayType.ShowBoth || displayType == NextBallDisplayType.ShowOnTop) {
@@ -50,6 +53,7 @@ public class GameInfoBoard {
 		}
 
 		drawGameType(g);
+		g.setColor(color);
 		clock.draw(g);
 	}
 

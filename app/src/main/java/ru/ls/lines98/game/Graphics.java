@@ -106,7 +106,7 @@ public class Graphics {
                 Math.max((int)(Color.green(color) * FACTOR), 0),
                 Math.max((int)(Color.blue(color) *FACTOR), 0));
     }
-    private int getColor() {
+    public int getColor() {
         return MyPaint.getColor();
     }
 }
