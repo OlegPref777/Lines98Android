@@ -25,11 +25,16 @@ import ru.ls.lines98.game.status.PlayerScoreHistory;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+public class MainActivity extends AppCompatActivity {
 //    DemoView demoview;
     GamePanel gamePanel;
+    private Toolbar toolbar;
 
     public static Point getDisplaySize() {
         if (_this == null){
@@ -61,6 +66,8 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
         gamePanel = findViewById(R.id.gamePanel);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         //setContentView(gamePanel);
 
         GameBoard gameBoard = new GameBoard(gamePanel);
