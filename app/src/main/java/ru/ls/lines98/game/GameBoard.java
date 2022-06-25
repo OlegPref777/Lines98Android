@@ -162,9 +162,7 @@ public class GameBoard {
 		selectedPos = null;
 		squareFrom.setBall(null);
 
-		if (GameInfo.getCurrentInstance().isMovementSound()) {
-			SoundManager.playMoveSound();
-		}
+		SoundManager.playMoveSound();
 
 		moveThread = new Thread(() -> {
 			Square square = null;

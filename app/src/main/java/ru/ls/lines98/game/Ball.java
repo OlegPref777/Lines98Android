@@ -157,10 +157,7 @@ public class Ball extends PrimitiveBall {
 			square.setBall(null);
 			square.repaint();
 		}
-
-		if (GameInfo.getCurrentInstance().isDestroySound()) {
-			SoundManager.playDestroySound();
-		}
+		SoundManager.playDestroySound();
 	}
 
 	@Override

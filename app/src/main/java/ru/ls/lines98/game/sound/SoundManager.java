@@ -11,8 +11,13 @@ import ru.ls.lines98.game.option.GameInfo;
 
 public class SoundManager {
 
+	public static SoundManager soundManager;
 	private final SoundPool soundPool;
+	int DESTROY_SOUND_ID ;
+	int CANT_MOVE_SOUND_ID;
+	int MOVE_SOUND_ID;
 	int JUMP_SOUND_ID;
+
 	int JUMP_SOUND_STREAM_ID = 0;
 
 	public SoundManager(Context context) {
@@ -29,44 +34,32 @@ public class SoundManager {
 		} else {
 			soundPool = new SoundPool(3,	AudioManager.STREAM_MUSIC,0);
 		}
+		CANT_MOVE_SOUND_ID = soundPool.load(context, R.raw.cantmove,1);
+		DESTROY_SOUND_ID = soundPool.load(context, R.raw.destroy2,1);
+		MOVE_SOUND_ID = soundPool.load(context,	R.raw.move,1);
 		JUMP_SOUND_ID = soundPool.load(context,	R.raw.jump,1);
 	}
 
 	public static void playMoveSound() {
-//		// Release old clip before playing new one
-//		closeIfOpen(moveClip);
-//		moveClip = soundManager.play(MOVE);
+		if (GameInfo.getCurrentInstance().isMovementSound()) {
+			soundManager.soundPool.play(soundManager.MOVE_SOUND_ID, 1, 1, 0, 0, 1);
+		}
 	}
 
 	public static void playCantMoveSound() {
-//		// This method can be constantly called when user tries to move a ball to an
-//		// impossible square. If we constantly close and play the clip again there will
-//		// be a delay
-//		if (cantMoveClip != null && cantMoveClip.isRunning()) {
-//			return;
-//		}
-//
-//		closeIfOpen(cantMoveClip);
-//		cantMoveClip = soundManager.play(CANTMOVE);
+		soundManager.soundPool.play(soundManager.CANT_MOVE_SOUND_ID, 1, 1, 0, 0, 1);
 	}
 
 	public static void playJumSound() {
-		// This play function
-		// takes five parameter
-		// leftVolume, rightVolume,
-		// priority, loop and rate.
 		if (GameInfo.getCurrentInstance().isBallJumpingSound()) {
 			soundManager.JUMP_SOUND_STREAM_ID = soundManager.soundPool.play(soundManager.JUMP_SOUND_ID, 1, 1, 0, -1, 0.5f);
-			//soundManager.soundPool.autoPause();
 		}
-
-//		closeIfOpen(jumpClip);
-//		jumpClip = soundManager.play(JUMP);
 	}
 
 	public static void playDestroySound() {
-//		closeIfOpen(destroyClip);
-//		destroyClip = soundManager.play(DESTROY);
+		if (GameInfo.getCurrentInstance().isDestroySound()) {
+			soundManager.soundPool.play(soundManager.DESTROY_SOUND_ID, 1, 1, 0, 0, 1);
+		}
 	}
 
 	public static void playJumSoundStop() {
@@ -78,52 +71,6 @@ public class SoundManager {
 
 	@Override
 	protected void finalize() throws Throwable {
-//		closeIfOpen(moveClip);
-//		closeIfOpen(cantMoveClip);
-//		closeIfOpen(jumpClip);
-//		closeIfOpen(destroyClip);
+		//TODO Close Sound
 	}
-
-//	private Clip play(String fileName) {
-//		Clip clip = null;
-//
-//		try {
-//			AudioInputStream stream = AudioSystem.getAudioInputStream(Lines.class.getResource(fileName));
-//			AudioFormat format = stream.getFormat();
-//			DataLine.Info info = new DataLine.Info(Clip.class, format);
-//			try {
-//				clip = (Clip) AudioSystem.getLine(info);
-//				clip.open(stream);
-//				clip.start();
-//			} catch (LineUnavailableException e) {
-//				e.printStackTrace();
-//			}
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (UnsupportedAudioFileException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return clip;
-//	}
-//
-//	private static void closeIfOpen(Clip clip) {
-//		if (clip != null && clip.isOpen()) {
-//			clip.close();
-//		}
-//	}
-
-	private static final String DESTROY = "DESTROY2.WAV";
-	private static final String JUMP = "JUMP.WAV";
-	private static final String CANTMOVE = "CANTMOVE.WAV";
-	private static final String MOVE = "MOVE.WAV";
-
-//	private static Clip moveClip;
-//	private static Clip cantMoveClip;
-//	private static Clip jumpClip;
-//	private static Clip destroyClip;
-
-	public static SoundManager soundManager;
 }
