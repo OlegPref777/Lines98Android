@@ -72,8 +72,6 @@ public class Square {
 	public void draw(Canvas g, boolean showGrowingBalls) {
 		drawBackground(g);
 
-		Log.d("", String.valueOf(System.currentTimeMillis() - OldTime));
-		OldTime = System.currentTimeMillis();
 		if (ball != null) {
 			if (showGrowingBalls) {
 				ball.draw(g);

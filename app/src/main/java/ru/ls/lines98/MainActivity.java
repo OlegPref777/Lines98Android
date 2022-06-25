@@ -1,8 +1,5 @@
 package ru.ls.lines98;
 
-import static ru.ls.lines98.game.Ball.MATURITY_SIZE;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Point;
@@ -16,7 +13,6 @@ import ru.ls.lines98.game.GameBoard;
 import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Square;
 
-import ru.ls.lines98.game.option.GameInfo;
 import ru.ls.lines98.game.option.GameType;
 import ru.ls.lines98.game.option.OptionDialog;
 import ru.ls.lines98.game.sound.SoundManager;
@@ -27,16 +23,13 @@ import ru.ls.lines98.game.status.PlayerScoreHistory;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-//    DemoView demoview;
     GamePanel gamePanel;
-    private Toolbar toolbar;
 
     public static Point getDisplaySize() {
         if (_this == null){
@@ -59,20 +52,16 @@ public class MainActivity extends AppCompatActivity {
         _this = this;
         SoundManager.soundManager = new SoundManager(this);
 
-//        demoview = new DemoView(this);
-//        setContentView(demoview);
         Square.SIZE = getDisplaySize().x / 9;
         Ball.MATURITY_SIZE = Square.SIZE * 33 / 45;
         Ball.GROWING_SIZE = Square.SIZE * 9 / 45;
 
         setTitle("Lines98");
 
-
         setContentView(R.layout.activity_main);
         gamePanel = findViewById(R.id.gamePanel);
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //setContentView(gamePanel);
 
         GameBoard gameBoard = new GameBoard(gamePanel);
         gamePanel.setGameBoard(gameBoard);
@@ -178,18 +167,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setView(input);
             final String[] playerName = {""};
 
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    playerName[0] = input.getText().toString();
-                }
-            });
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
+            builder.setPositiveButton("OK", (dialog, which) -> playerName[0] = input.getText().toString());
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
             //Setting the title manually
             AlertDialog alert = builder.create();
             alert.setTitle("AlertDialogExample");

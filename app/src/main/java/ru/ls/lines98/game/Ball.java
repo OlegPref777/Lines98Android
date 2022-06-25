@@ -1,8 +1,5 @@
 package ru.ls.lines98.game;
 
-import android.graphics.Color;
-import android.util.Log;
-
 import java.util.List;
 
 import ru.ls.lines98.game.common.PrimitiveBall;
@@ -63,26 +60,22 @@ public class Ball extends PrimitiveBall {
 					if (top > 2) {
 						top -= 20;
 					} else {
-						isUpDirect = !isUpDirect;
+						isUpDirect = false;
 					}
 				} else {
 					if (top + height < square.getSize() - 2) {
 						top += 20;
 					} else {
-						isUpDirect = !isUpDirect;
+						isUpDirect = true;
 					}
 				}
-
-
 				square.repaint();
-
 				try {
 					Thread.sleep(GameInfo.getCurrentInstance().getJumpValue());
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-			top += Square.JUMP_DY;
 			square.repaint();
 			SoundManager.playJumSoundStop();
 		});
