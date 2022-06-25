@@ -52,7 +52,7 @@ public class SoundManager {
 
 	public static void playJumSound() {
 		if (GameInfo.getCurrentInstance().isBallJumpingSound()) {
-			soundManager.JUMP_SOUND_STREAM_ID = soundManager.soundPool.play(soundManager.JUMP_SOUND_ID, 1, 1, 0, -1, 0.5f);
+			soundManager.JUMP_SOUND_STREAM_ID = soundManager.soundPool.play(soundManager.JUMP_SOUND_ID, 1, 1, 0, -1, 1.15f);
 		}
 	}
 
