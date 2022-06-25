@@ -18,17 +18,17 @@
             <item
                 android:id="@+id/NewLinesGame"
                 android:orderInCategory="100"
-                android:title="@string/NewLinesGame"
+                android:title="@string/Lines"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/NewSquaresGame"
                 android:orderInCategory="100"
-                android:title="@string/NewSquaresGame"
+                android:title="@string/Squares"
                 app:showAsAction="never" />
             <item
                 android:id="@+id/NewBlocksGame"
                 android:orderInCategory="100"
-                android:title="@string/NewBlocksGame"
+                android:title="@string/Blocks"
                 app:showAsAction="never" />
 
         </menu>

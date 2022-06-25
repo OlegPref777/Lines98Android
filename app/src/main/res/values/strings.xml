@@ -15,11 +15,22 @@
     <string name="LoadGame">Load Game</string>
     <string name="EndGame">End Game</string>
     <string name="StepBack">Step back</string>
-    <string name="New">New</string>
-    <string name="NewLinesGame">New Lines Game</string>
-    <string name="NewSquaresGame">New Squares Game</string>
-    <string name="NewBlocksGame">New Blocks Game</string>
+    <string name="New">New Game</string>
+    <string name="Lines">Lines</string>
+    <string name="Squares">Squares</string>
+    <string name="Blocks">Blocks</string>
     <string name="Options">Options</string>
     <string name="HighScores">High Scores</string>
     <string name="DefaultGameType">Default game type:</string>
+    <string name="next_ball_display_type">Next ball display type:</string>
+    <string name="play_sounds">Play sounds:</string>
+    <string name="destroy">Destroy</string>
+    <string name="moving">Moving</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="jumping">Jumping</string>
+    <string name="show_both">Show both</string>
+    <string name="show_on_field">Show on field</string>
+    <string name="show_on_top">Show on top</string>
+    <string name="dont_show">Do not show</string>
 </resources>

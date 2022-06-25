@@ -1,10 +1,14 @@
 package ru.ls.lines98.game.option;
 
+import ru.ls.lines98.MainActivity;
+import ru.ls.lines98.R;
+
 public enum NextBallDisplayType {
-	ShowBoth("Show both"),
-	ShowOnField("Show on field"),
-	ShowOnTop("Show on top"),
-	NotShow("Do not show");
+
+	ShowBoth(MainActivity._this.getResources().getString(R.string.show_both)),
+	ShowOnField(MainActivity._this.getResources().getString(R.string.show_on_field)),
+	ShowOnTop(MainActivity._this.getResources().getString(R.string.show_on_top)),
+	NotShow(MainActivity._this.getResources().getString(R.string.dont_show));
 
 	private String description;
 

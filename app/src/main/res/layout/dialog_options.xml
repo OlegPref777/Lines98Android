@@ -28,21 +28,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
-                    android:text="Line" />
+                    android:text="@string/Lines" />
 
                 <RadioButton
                     android:id="@+id/BlockRB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
-                    android:text="Block" />
+                    android:text="@string/Blocks" />
 
                 <RadioButton
                     android:id="@+id/SquareRB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
-                    android:text="Square" />
+                    android:text="@string/Squares" />
 
             </RadioGroup>
         </LinearLayout>
@@ -51,20 +51,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="100">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Next ball display type:" />
+            android:layout_weight="40"
+            android:text="@string/next_ball_display_type" />
 
         <Spinner
             android:id="@+id/NextBallDisplayCB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="60" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Play sounds:" />
+            android:text="@string/play_sounds" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,21 +87,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
-                android:text = "Destroy">
+                android:text = "@string/destroy">
             </CheckBox>
             <CheckBox
                 android:id="@+id/MovingSoundCB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
-                android:text = "Moving">
+                android:text = "@string/moving">
             </CheckBox>
             <CheckBox
                 android:id="@+id/JumpingSoundCB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
-                android:text = "Jumping">
+                android:text = "@string/jumping">
             </CheckBox>
 
         </LinearLayout>
@@ -116,14 +117,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:id="@+id/OkBtn"
-            android:text="Ok"
+            android:text="@string/ok"
             >
         </Button>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:id="@+id/CancelBtn">
         </Button>
     </LinearLayout>
