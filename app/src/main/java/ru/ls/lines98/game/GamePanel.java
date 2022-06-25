@@ -67,7 +67,8 @@ public class GamePanel extends View {
 	public GameBoard getGameBoard() {
 		return gameBoard;
 	}
-	@Override protected void onDraw(Canvas canvas) {
+	@Override
+	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		gameBoard.draw(canvas);
 	}

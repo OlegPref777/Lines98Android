@@ -113,28 +113,11 @@ public class GameInfoBoard {
 	private DigitalClock clock = new DigitalClock();
 	private NextBallBoard nextBallBoard = new NextBallBoard();
 
-	long startTime = 0;
-	Handler timerHandler = new Handler();
-	Runnable timerRunnable = new Runnable() {
-
-		@Override
-		public void run() {
-			long millis = System.currentTimeMillis() - startTime;
-			int seconds = (int) (millis / 1000);
-			int minutes = seconds / 60;
-			seconds = seconds % 60;
-
-			clock.setSeconds(clock.getSeconds() + 1);
-			gamePanel.invalidate (left, top, width, height);
-			timerHandler.postDelayed(this, 1000);
-		}
-	};
-
 	private Timer clockTimer = new Timer(1000, new Runnable() {
 		@Override
 		public void run() {
 			clock.setSeconds(clock.getSeconds() + 1);
-			gamePanel.invalidate (left, top, width, height);
+			gamePanel.invalidate ();
 
 		}
 	});

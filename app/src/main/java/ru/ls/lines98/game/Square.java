@@ -3,11 +3,12 @@ package ru.ls.lines98.game;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 
 public class Square {
 
-	public Square(View component) {
+	public Square(GamePanel component) {
 		this.component = component;
 	}
 
@@ -67,9 +68,12 @@ public class Square {
 		return ball.getBallState() == BallState.MATURE && ball.getColor() == color;
 	}
 
+	long OldTime = System.currentTimeMillis();
 	public void draw(Canvas g, boolean showGrowingBalls) {
 		drawBackground(g);
 
+		Log.d("", String.valueOf(System.currentTimeMillis() - OldTime));
+		OldTime = System.currentTimeMillis();
 		if (ball != null) {
 			if (showGrowingBalls) {
 				ball.draw(g);
@@ -80,7 +84,7 @@ public class Square {
 	}
 
 	public void repaint() {
-		component.invalidate(left, top, size, size);
+		component.invalidate();
 	}
 
 	private void drawBackground(Canvas canvas) {
@@ -94,7 +98,9 @@ public class Square {
 	private int size = SIZE;
 	private Ball ball;
 
-	private View component;
+	private GamePanel component;
 
 	public static int SIZE = 45;
+	public static int JUMP_DY = (int)(SIZE * 0.5);
+	public static int JUMP_MAX = (int)(SIZE * 0.5);
 }
