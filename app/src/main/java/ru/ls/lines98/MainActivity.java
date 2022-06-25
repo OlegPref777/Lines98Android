@@ -16,8 +16,10 @@ import ru.ls.lines98.game.GameBoard;
 import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Square;
 
+import ru.ls.lines98.game.option.GameInfo;
 import ru.ls.lines98.game.option.GameType;
 import ru.ls.lines98.game.option.OptionDialog;
+import ru.ls.lines98.game.sound.SoundManager;
 import ru.ls.lines98.game.status.GameInfoBoard;
 import ru.ls.lines98.game.status.HighScoreDialog;
 import ru.ls.lines98.game.status.PlayerScore;
@@ -49,12 +51,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static Point DisplaySize = null;
-    private static MainActivity _this = null;
+    public static MainActivity _this = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         _this = this;
+        SoundManager.soundManager = new SoundManager(this);
+
 //        demoview = new DemoView(this);
 //        setContentView(demoview);
         Square.SIZE = getDisplaySize().x / 9;

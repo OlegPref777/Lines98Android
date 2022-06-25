@@ -1,15 +1,35 @@
 package ru.ls.lines98.game.sound;
 
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-
+import ru.ls.lines98.R;
+import ru.ls.lines98.game.option.GameInfo;
 
 public class SoundManager {
 
-	private SoundManager() {
+	private final SoundPool soundPool;
+	int JUMP_SOUND_ID;
+	int JUMP_SOUND_STREAM_ID = 0;
+
+	public SoundManager(Context context) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			AudioAttributes	audioAttributes	= new AudioAttributes.Builder()
+					.setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+					.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+					.build();
+			soundPool = new SoundPool
+					.Builder()
+					.setMaxStreams(3)
+					.setAudioAttributes(audioAttributes)
+					.build();
+		} else {
+			soundPool = new SoundPool(3,	AudioManager.STREAM_MUSIC,0);
+		}
+		JUMP_SOUND_ID = soundPool.load(context,	R.raw.jump,1);
 	}
 
 	public static void playMoveSound() {
@@ -31,6 +51,15 @@ public class SoundManager {
 	}
 
 	public static void playJumSound() {
+		// This play function
+		// takes five parameter
+		// leftVolume, rightVolume,
+		// priority, loop and rate.
+		if (GameInfo.getCurrentInstance().isBallJumpingSound()) {
+			soundManager.JUMP_SOUND_STREAM_ID = soundManager.soundPool.play(soundManager.JUMP_SOUND_ID, 1, 1, 0, -1, 0.5f);
+			//soundManager.soundPool.autoPause();
+		}
+
 //		closeIfOpen(jumpClip);
 //		jumpClip = soundManager.play(JUMP);
 	}
@@ -38,6 +67,13 @@ public class SoundManager {
 	public static void playDestroySound() {
 //		closeIfOpen(destroyClip);
 //		destroyClip = soundManager.play(DESTROY);
+	}
+
+	public static void playJumSoundStop() {
+		if (soundManager.JUMP_SOUND_STREAM_ID != 0){
+			soundManager.soundPool.stop(soundManager.JUMP_SOUND_STREAM_ID);
+			soundManager.JUMP_SOUND_STREAM_ID = 0;
+		}
 	}
 
 	@Override
@@ -89,5 +125,5 @@ public class SoundManager {
 //	private static Clip jumpClip;
 //	private static Clip destroyClip;
 
-	private static SoundManager soundManager = new SoundManager();
+	public static SoundManager soundManager;
 }

@@ -1,17 +1,20 @@
 package ru.ls.lines98.game.status;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.game.common.StorageUtil;
 
 public class PlayerScoreHistory {
 
 	private PlayerScoreHistory() {
-		scores = StorageUtil.<List<PlayerScore>>load(SCORE_HISTORY_FILE_NAME).orElse(new ArrayList<>());
+		scores = StorageUtil.<List<PlayerScore>>load(MainActivity._this, SCORE_HISTORY_FILE_NAME).orElse(new ArrayList<>());
 	}
 
 	public int getHighestScore() {
@@ -34,7 +37,7 @@ public class PlayerScoreHistory {
 	}
 
 	public void save() {
-		StorageUtil.save(scores, SCORE_HISTORY_FILE_NAME);
+		StorageUtil.save(scores, MainActivity._this, SCORE_HISTORY_FILE_NAME);
 	}
 
 	private final static int SCORE_HISTORY_LIMIT = 10;
@@ -48,4 +51,5 @@ public class PlayerScoreHistory {
 	public static PlayerScoreHistory getInstance() {
 		return instance;
 	}
+
 }

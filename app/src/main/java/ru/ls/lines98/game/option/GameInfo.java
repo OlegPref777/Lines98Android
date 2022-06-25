@@ -1,7 +1,10 @@
 package ru.ls.lines98.game.option;
 
+import android.content.Context;
+
 import java.io.Serializable;
 
+import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.game.common.StorageUtil;
 
 public class GameInfo implements Cloneable, Serializable {
@@ -94,7 +97,7 @@ public class GameInfo implements Cloneable, Serializable {
 
 	public static void setCurrentInstance(GameInfo gameInfo) {
 		currentInstance = gameInfo;
-		StorageUtil.save(currentInstance, CONFIG_FILE_NAME);
+		StorageUtil.save(currentInstance, MainActivity._this, CONFIG_FILE_NAME);
 	}
 
 	@Override
@@ -128,8 +131,9 @@ public class GameInfo implements Cloneable, Serializable {
 	private boolean movementSound = true;
 
 	private static GameInfo currentInstance;
+
 	private final static String CONFIG_FILE_NAME = "Config";
 	static {
-		currentInstance = StorageUtil.<GameInfo>load(CONFIG_FILE_NAME).orElse(new GameInfo());
+		currentInstance = StorageUtil.<GameInfo>load(MainActivity._this, CONFIG_FILE_NAME).orElse(new GameInfo());
 	}
 }

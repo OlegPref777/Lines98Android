@@ -55,6 +55,7 @@ public class Ball extends PrimitiveBall {
 		ballState = BallState.ANIMATE;
 
 		animateThread = new Thread(() -> {
+			SoundManager.playJumSound();
 			while (ballState == BallState.ANIMATE) {
 				if (isUpDirect) {
 					if (top > 2) {
@@ -67,9 +68,7 @@ public class Ball extends PrimitiveBall {
 						top += 20;
 					} else {
 						isUpDirect = !isUpDirect;
-						if (GameInfo.getCurrentInstance().isBallJumpingSound()) {
-							SoundManager.playJumSound();
-						}
+
 					}
 				}
 
@@ -81,6 +80,7 @@ public class Ball extends PrimitiveBall {
 					e.printStackTrace();
 				}
 			}
+			SoundManager.playJumSoundStop();
 		});
 
 		animateThread.start();
