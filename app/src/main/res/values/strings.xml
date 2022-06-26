@@ -28,4 +28,6 @@
     <string name="Author">Oleg Buikin</string>
     <string name="VersionString">Version</string>
     <string name="AuthorString">Author</string>
+    <string name="BasedOnProject">Based on the Trac Quang Hoa project</string>
+    <string name="TracQuangHoaGit">https://github.com/hoaftq</string>
 </resources>

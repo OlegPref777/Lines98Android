@@ -28,4 +28,6 @@
     <string name="Author">Олег Буйкин</string>
     <string name="VersionString">Версия</string>
     <string name="AuthorString">Разработчик</string>
+    <string name="BasedOnProject">За основу взят проект Trac Quang Hoa</string>
+    <string name="TracQuangHoaGit">https://github.com/hoaftq</string>
 </resources>
