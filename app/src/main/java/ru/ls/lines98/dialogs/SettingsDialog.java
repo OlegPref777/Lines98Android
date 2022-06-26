@@ -20,7 +20,7 @@ import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.option.NextBallDisplayType;
 
 
-public class OptionDialog{
+public class SettingsDialog {
 	GameInfo gameInfo = GameInfo.getCurrentInstance().getClone();
 	RadioGroup GameTypeRG;
 	RadioButton LineRB, SquareRB, BlockRB;
@@ -49,7 +49,7 @@ public class OptionDialog{
 	};
 
 
-	public OptionDialog(Context context) {
+	public SettingsDialog(Context context) {
 		OptionsDlg = new AlertDialog.Builder(context).create();
 		OptionsDlg.setTitle(MainActivity._this.getResources().getString(R.string.Options));
 

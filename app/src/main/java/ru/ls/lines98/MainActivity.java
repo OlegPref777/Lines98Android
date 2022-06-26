@@ -14,7 +14,7 @@ import ru.ls.lines98.game.Square;
 
 import ru.ls.lines98.dialogs.AboutDialog;
 import ru.ls.lines98.option.GameType;
-import ru.ls.lines98.dialogs.OptionDialog;
+import ru.ls.lines98.dialogs.SettingsDialog;
 import ru.ls.lines98.sound.SoundManager;
 import ru.ls.lines98.status.GameInfoBoard;
 import ru.ls.lines98.dialogs.HighScoreDialog;
@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
         }
         //Options Menu
         if (id == R.id.Settings){
-            OptionDialog optionDialog = new OptionDialog(this);
-            optionDialog.ShowDialog();
+            SettingsDialog settingsDialog = new SettingsDialog(this);
+            settingsDialog.ShowDialog();
             gamePanel.invalidate();
             return true;
         }

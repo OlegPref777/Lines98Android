@@ -25,4 +25,7 @@
     <string name="show_on_field">На поле</string>
     <string name="show_on_top">Сверху</string>
     <string name="dont_show">Не показывать</string>
+    <string name="Author">Олег Буйкин</string>
+    <string name="VersionString">Версия</string>
+    <string name="AuthorString">Разработчик</string>
 </resources>
