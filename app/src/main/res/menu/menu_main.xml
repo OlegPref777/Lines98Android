@@ -34,26 +34,7 @@
         </menu>
     </item>
     <item
-        android:id="@+id/OptionsSubMenu"
-        android:orderInCategory="100"
-        android:title="@string/Options"
-        app:showAsAction="never" >
-        <menu>
-            <item
-                android:id="@+id/Options"
-                android:orderInCategory="100"
-                android:title="@string/Options"
-                app:showAsAction="never" />
-            <item
-                android:id="@+id/HighScores"
-                android:orderInCategory="100"
-                android:title="@string/HighScores"
-                app:showAsAction="never" />
-        </menu>
-    </item>
-
-    <item
-        android:id="@+id/Control"
+        android:id="@+id/GameControl"
         android:orderInCategory="100"
         android:title="@string/Control"
         app:showAsAction="never" >
@@ -77,7 +58,16 @@
         </menu>
     </item>
 
-
+    <item
+        android:id="@+id/Options"
+        android:orderInCategory="100"
+        android:title="@string/Options"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/HighScores"
+        android:orderInCategory="100"
+        android:title="@string/HighScores"
+        app:showAsAction="never" />
     <item
         android:id="@+id/About"
         android:orderInCategory="100"

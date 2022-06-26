@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.R.layout;
 
+import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.R;
 
 
@@ -47,7 +48,7 @@ public class OptionDialog{
 
 	public OptionDialog(Context context) {
 		OptionsDlg = new AlertDialog.Builder(context).create();
-		OptionsDlg.setTitle("Options");
+		OptionsDlg.setTitle(MainActivity._this.getResources().getString(R.string.Options));
 
 		lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = lInflater.inflate(R.layout.dialog_options, OptionsDlg.getListView());
@@ -55,6 +56,15 @@ public class OptionDialog{
 		LineRB = view.findViewById(R.id.LineRB);
 		BlockRB = view.findViewById(R.id.BlockRB);
 		SquareRB = view.findViewById(R.id.SquareRB);
+		if (gameInfo.getDefaultGameType() == GameType.LINE){
+			LineRB.setChecked(true);
+		}
+		if (gameInfo.getDefaultGameType() == GameType.BLOCK){
+			BlockRB.setChecked(true);
+		}
+		if (gameInfo.getDefaultGameType() == GameType.SQUARE){
+			SquareRB.setChecked(true);
+		}
 		LineRB.setOnClickListener(GameTypeRB_OnClick);
 		BlockRB.setOnClickListener(GameTypeRB_OnClick);
 		SquareRB.setOnClickListener(GameTypeRB_OnClick);

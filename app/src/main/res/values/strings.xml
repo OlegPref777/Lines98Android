@@ -1,16 +1,8 @@
 <resources>
     <string name="app_name">Lines98Android</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="About">About</string>
-    <string name="Control">Control</string>
+    <string name="Control">Game</string>
     <string name="SaveGame">Save Game</string>
     <string name="LoadGame">Load Game</string>
     <string name="EndGame">End Game</string>
@@ -29,8 +21,8 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="jumping">Jumping</string>
-    <string name="show_both">Show both</string>
-    <string name="show_on_field">Show on field</string>
-    <string name="show_on_top">Show on top</string>
-    <string name="dont_show">Do not show</string>
+    <string name="show_both">Both</string>
+    <string name="show_on_field">On field</string>
+    <string name="show_on_top">On top</string>
+    <string name="dont_show">Don\'t show</string>
 </resources>
