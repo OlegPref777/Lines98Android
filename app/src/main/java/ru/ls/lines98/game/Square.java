@@ -3,8 +3,8 @@ package ru.ls.lines98.game;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
-import android.view.View;
+
+import ru.ls.lines98.common.ColorUtil;
 
 public class Square {
 
@@ -86,7 +86,7 @@ public class Square {
 	}
 
 	private void drawBackground(Canvas canvas) {
-		Graphics g = new Graphics(canvas);
+		ColorUtil.Graphics g = new ColorUtil.Graphics(canvas);
 		g.setColor(Color.LTGRAY);
 		g.fill3DRect(left, top, SIZE, SIZE, true);
 	}

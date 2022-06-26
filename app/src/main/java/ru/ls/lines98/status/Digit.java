@@ -1,8 +1,8 @@
-package ru.ls.lines98.game.status;
+package ru.ls.lines98.status;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import ru.ls.lines98.game.Graphics;
+import ru.ls.lines98.common.ColorUtil;
 
 public class Digit {
 
@@ -47,7 +47,7 @@ public class Digit {
 		return 3 * ledHeight + 2 * (2 + hInside + ledVerticalWidth);
 	}
 
-	public void draw(Graphics g){
+	public void draw(ColorUtil.Graphics g){
 		drawHorizontalLed(g, left + ledHeight, top, states[value][0] ? onColor
 				: offColor);
 		drawHorizontalLed(g, left + ledHeight, top + ledHeight
@@ -75,7 +75,7 @@ public class Digit {
 //		draw(g);
 //	}
 
-	private void drawHorizontalLed(Graphics g, int l, int t, int c){
+	private void drawHorizontalLed(ColorUtil.Graphics g, int l, int t, int c){
 		g.setColor(c);
 		g.fillRect(l, t, ledHorizontalWidth, hOutside);
 		g.fillRect(l - hOutside, t + hOutside, ledHorizontalWidth + 2 * hOutside, hInside);
@@ -83,11 +83,11 @@ public class Digit {
 	}
 
 	private void drawHorizontalLed(Canvas canvas, int l, int t, int c) {
-		Graphics g = new Graphics(canvas);
+		ColorUtil.Graphics g = new ColorUtil.Graphics(canvas);
 		drawHorizontalLed(g, l, t, c);
 	}
 
-	private void drawVerticalLed(Graphics g, int l, int t, int c){
+	private void drawVerticalLed(ColorUtil.Graphics g, int l, int t, int c){
 		g.setColor(c);
 		g.fillRect(l, t, hOutside, ledVerticalWidth);
 		g.fillRect(l + hOutside, t - hInside, hInside, ledVerticalWidth + 2
@@ -96,7 +96,7 @@ public class Digit {
 
 	}
 	private void drawVerticalLed(Canvas canvas, int l, int t, int c) {
-		Graphics g = new Graphics(canvas);
+		ColorUtil.Graphics g = new ColorUtil.Graphics(canvas);
 		drawVerticalLed(g, l, t, c);
 	}
 

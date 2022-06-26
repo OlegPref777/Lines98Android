@@ -1,4 +1,4 @@
-package ru.ls.lines98.game.option;
+package ru.ls.lines98.option;
 
 import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.R;

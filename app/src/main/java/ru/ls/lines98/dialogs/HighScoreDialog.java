@@ -1,7 +1,6 @@
-package ru.ls.lines98.game.status;
+package ru.ls.lines98.dialogs;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Base64;
@@ -10,12 +9,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 
-import java.security.InvalidParameterException;
-import java.util.List;
-
 
 import ru.ls.lines98.R;
-import ru.ls.lines98.game.common.WindowUtil;
 
 public class HighScoreDialog {
 

@@ -1,4 +1,4 @@
-package ru.ls.lines98.game;
+package ru.ls.lines98.common;
 
 import android.graphics.Paint;
 import android.graphics.Point;

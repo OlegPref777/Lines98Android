@@ -1,4 +1,4 @@
-package ru.ls.lines98.game.common;
+package ru.ls.lines98.common;
 
 import android.content.Context;
 

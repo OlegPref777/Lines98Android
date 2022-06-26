@@ -2,7 +2,6 @@ package ru.ls.lines98.game;
 
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -10,12 +9,12 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
-import ru.ls.lines98.game.common.ColorUtil;
-import ru.ls.lines98.game.option.GameInfo;
-import ru.ls.lines98.game.option.GameType;
-import ru.ls.lines98.game.option.NextBallDisplayType;
-import ru.ls.lines98.game.sound.SoundManager;
-import ru.ls.lines98.game.status.GameInfoBoard;
+import ru.ls.lines98.common.ColorUtil;
+import ru.ls.lines98.option.GameInfo;
+import ru.ls.lines98.option.GameType;
+import ru.ls.lines98.option.NextBallDisplayType;
+import ru.ls.lines98.sound.SoundManager;
+import ru.ls.lines98.status.GameInfoBoard;
 
 public class GameBoard {
 

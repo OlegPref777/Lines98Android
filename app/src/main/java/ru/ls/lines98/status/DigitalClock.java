@@ -1,10 +1,7 @@
-package ru.ls.lines98.game.status;
+package ru.ls.lines98.status;
 
-import android.graphics.Canvas;
-
-import ru.ls.lines98.MainActivity;
-import ru.ls.lines98.game.Graphics;
 import ru.ls.lines98.game.Square;
+import ru.ls.lines98.common.ColorUtil;
 
 public class DigitalClock {
 
@@ -21,7 +18,7 @@ public class DigitalClock {
 		}
 	}
 
-	public void draw(Graphics g){
+	public void draw(ColorUtil.Graphics g){
 		for (Digit digit : digits) {
 			digit.draw(g);
 		}

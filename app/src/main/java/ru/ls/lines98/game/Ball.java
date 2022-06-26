@@ -2,9 +2,9 @@ package ru.ls.lines98.game;
 
 import java.util.List;
 
-import ru.ls.lines98.game.common.PrimitiveBall;
-import ru.ls.lines98.game.option.GameInfo;
-import ru.ls.lines98.game.sound.SoundManager;
+import ru.ls.lines98.common.PrimitiveBall;
+import ru.ls.lines98.option.GameInfo;
+import ru.ls.lines98.sound.SoundManager;
 
 public class Ball extends PrimitiveBall {
 

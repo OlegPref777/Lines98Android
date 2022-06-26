@@ -1,9 +1,7 @@
-package ru.ls.lines98.game.status;
-import android.graphics.Canvas;
+package ru.ls.lines98.status;
 
-import ru.ls.lines98.MainActivity;
-import ru.ls.lines98.game.Graphics;
 import ru.ls.lines98.game.Square;
+import ru.ls.lines98.common.ColorUtil;
 
 
 public class Score {
@@ -15,7 +13,7 @@ public class Score {
 		}
 	}
 
-	public void draw(Graphics g) {
+	public void draw(ColorUtil.Graphics g) {
 		for (int i = 0; i < digits.length; i++) {
 			digits[i].draw(g);
 		}

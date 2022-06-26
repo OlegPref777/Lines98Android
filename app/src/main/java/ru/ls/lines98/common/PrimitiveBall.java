@@ -1,18 +1,13 @@
-package ru.ls.lines98.game.common;
+package ru.ls.lines98.common;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.RectF;
-import android.graphics.Shader;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
-
-import ru.ls.lines98.game.GradientPaint;
-import ru.ls.lines98.game.Graphics;
 
 
 //https://www.javatpoint.com/android-simple-Canvas-example
@@ -66,7 +61,7 @@ public class PrimitiveBall {
 		this.color = color;
 	}
 
-	public void draw(Graphics g2){
+	public void draw(ColorUtil.Graphics g2){
 		Paint oldPaint = g2.getPaint();
 		int dx = (int) (width / Math.sqrt(2));
 		int dy = (int) (height / Math.sqrt(2));
@@ -90,7 +85,7 @@ public class PrimitiveBall {
 	}
 	@RequiresApi(api = Build.VERSION_CODES.O)
 	public void draw(Canvas canvas) {
-		Graphics g2 = new Graphics(canvas);
+		ColorUtil.Graphics g2 = new ColorUtil.Graphics(canvas);
 		draw(g2);
 
 	}

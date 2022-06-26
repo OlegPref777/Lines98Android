@@ -1,6 +1,4 @@
-package ru.ls.lines98.game.status;
-
-import android.content.Context;
+package ru.ls.lines98.status;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ru.ls.lines98.MainActivity;
-import ru.ls.lines98.game.common.StorageUtil;
+import ru.ls.lines98.common.StorageUtil;
 
 public class PlayerScoreHistory {
 

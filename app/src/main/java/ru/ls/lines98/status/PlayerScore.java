@@ -1,4 +1,4 @@
-package ru.ls.lines98.game.status;
+package ru.ls.lines98.status;
 
 import java.io.Serializable;
 

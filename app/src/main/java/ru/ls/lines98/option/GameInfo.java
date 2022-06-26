@@ -1,11 +1,9 @@
-package ru.ls.lines98.game.option;
-
-import android.content.Context;
+package ru.ls.lines98.option;
 
 import java.io.Serializable;
 
 import ru.ls.lines98.MainActivity;
-import ru.ls.lines98.game.common.StorageUtil;
+import ru.ls.lines98.common.StorageUtil;
 
 public class GameInfo implements Cloneable, Serializable {
 
@@ -114,6 +112,9 @@ public class GameInfo implements Cloneable, Serializable {
 		gi.setDestroySound(destroySound);
 		gi.setMovementSound(movementSound);
 		return gi;
+	}
+	public GameInfo getClone(){
+		return clone();
 	}
 
 	private GameType gameType = GameType.LINE;

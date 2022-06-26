@@ -1,8 +1,8 @@
-package ru.ls.lines98.game.status;
+package ru.ls.lines98.status;
 
 import ru.ls.lines98.game.Ball;
-import ru.ls.lines98.game.Graphics;
-import ru.ls.lines98.game.common.PrimitiveBall;
+import ru.ls.lines98.common.ColorUtil;
+import ru.ls.lines98.common.PrimitiveBall;
 
 public class NextBallBoard {
 
@@ -13,7 +13,7 @@ public class NextBallBoard {
 
 	}
 
-	public void draw(Graphics g) {
+	public void draw(ColorUtil.Graphics g) {
 		for (PrimitiveBall ball : nextBallArray) {
 			ball.draw(g);
 		}

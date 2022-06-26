@@ -1,18 +1,17 @@
-package ru.ls.lines98.game.status;
+package ru.ls.lines98.status;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
 import android.graphics.Typeface;
-import android.os.Handler;
 
 import ru.ls.lines98.game.GamePanel;
-import ru.ls.lines98.game.Graphics;
 import ru.ls.lines98.game.Square;
-import ru.ls.lines98.game.common.Timer;
-import ru.ls.lines98.game.option.GameInfo;
-import ru.ls.lines98.game.option.NextBallDisplayType;
+import ru.ls.lines98.common.ColorUtil;
+import ru.ls.lines98.common.Timer;
+import ru.ls.lines98.option.GameInfo;
+import ru.ls.lines98.option.NextBallDisplayType;
 
 public class GameInfoBoard {
 
@@ -40,7 +39,7 @@ public class GameInfoBoard {
 	}
 
 	public void draw(Canvas canvas) {
-		Graphics g = new Graphics(canvas);
+		ColorUtil.Graphics g = new ColorUtil.Graphics(canvas);
 		g.setColor(Color.BLACK);
 		g.fill3DRect(left, top, width, height, true);
 		highestScore.draw(g);
@@ -82,7 +81,7 @@ public class GameInfoBoard {
 			clockTimer.stop();
 		}
 	}
-	private void drawGameType(Graphics g) {
+	private void drawGameType(ColorUtil.Graphics g) {
 		String gameTypeString = GameInfo.getCurrentInstance().getGameType().toString().toUpperCase();
 		Paint myPaint = g.getPaint();
 		myPaint.setTextSize(7);
@@ -97,7 +96,7 @@ public class GameInfoBoard {
 	}
 
 	private void drawGameType(Canvas canvas) {
-		Graphics g = new Graphics(canvas);
+		ColorUtil.Graphics g = new ColorUtil.Graphics(canvas);
 		drawGameType(g);
 	}
 

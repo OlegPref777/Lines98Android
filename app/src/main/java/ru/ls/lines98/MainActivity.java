@@ -1,7 +1,6 @@
 package ru.ls.lines98;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.text.InputType;
@@ -13,13 +12,14 @@ import ru.ls.lines98.game.GameBoard;
 import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Square;
 
-import ru.ls.lines98.game.option.GameType;
-import ru.ls.lines98.game.option.OptionDialog;
-import ru.ls.lines98.game.sound.SoundManager;
-import ru.ls.lines98.game.status.GameInfoBoard;
-import ru.ls.lines98.game.status.HighScoreDialog;
-import ru.ls.lines98.game.status.PlayerScore;
-import ru.ls.lines98.game.status.PlayerScoreHistory;
+import ru.ls.lines98.dialogs.AboutDialog;
+import ru.ls.lines98.option.GameType;
+import ru.ls.lines98.dialogs.OptionDialog;
+import ru.ls.lines98.sound.SoundManager;
+import ru.ls.lines98.status.GameInfoBoard;
+import ru.ls.lines98.dialogs.HighScoreDialog;
+import ru.ls.lines98.status.PlayerScore;
+import ru.ls.lines98.status.PlayerScoreHistory;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         //Options Menu
-        if (id == R.id.Options){
+        if (id == R.id.Settings){
             OptionDialog optionDialog = new OptionDialog(this);
             optionDialog.ShowDialog();
             gamePanel.invalidate();

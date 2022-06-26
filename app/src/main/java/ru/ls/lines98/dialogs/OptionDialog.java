@@ -1,4 +1,4 @@
-package ru.ls.lines98.game.option;
+package ru.ls.lines98.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,10 +15,13 @@ import android.R.layout;
 
 import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.R;
+import ru.ls.lines98.option.GameInfo;
+import ru.ls.lines98.option.GameType;
+import ru.ls.lines98.option.NextBallDisplayType;
 
 
 public class OptionDialog{
-	GameInfo gameInfo = GameInfo.getCurrentInstance().clone();
+	GameInfo gameInfo = GameInfo.getCurrentInstance().getClone();
 	RadioGroup GameTypeRG;
 	RadioButton LineRB, SquareRB, BlockRB;
 	Button OkBtn, CancelBtn;
