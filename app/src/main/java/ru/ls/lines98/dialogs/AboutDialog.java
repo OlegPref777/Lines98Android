@@ -38,10 +38,12 @@ public class AboutDialog {
 
 
 		String unencodedHtml = "<html><body><table>" +
-				"<tr><td colspan=2 align=center><font size=5 color=Red>Lines 98</font></td></tr>"
-				+ "<tr><td>"+ AuthorString + ":</td><td>" + Author + "</td><td></td></tr>" + "<tr><td>"+ VersionString +":</td><td>"
-				+ BuildConfig.VERSION_NAME + "</td></tr><tr><td><font size=2 color=Green>" + BasedOnProject + " " + TracQuangHoaGit + "</font></td></tr>" +
-				"</table>" + "<a href='" + MY_GIT_ADDRESS + "'><i>" + MY_GIT_ADDRESS + "</i></a></body></html>";
+				"<tr><td colspan=2 align=center><font size=5 color=Green>Lines 98</font></td></tr>" +
+				"<tr><td>"+ AuthorString + ":</td><td>" + Author + "</td></tr>" +
+				"<tr><td>"+ VersionString +":</td><td>" + BuildConfig.VERSION_NAME + "</td></tr>" +
+				"<tr><td><font size=2 color=Green>" + BasedOnProject + " " + TracQuangHoaGit + "</font></td></tr>" +
+				"</table>" +
+				"<a href='" + MY_GIT_ADDRESS + "'><i>" + MY_GIT_ADDRESS + "</i></a></body></html>";
 		String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(), Base64.NO_PADDING);
 		DisplayWV.loadData(encodedHtml, "text/html", "base64");
 		OkBtn = view.findViewById(R.id.OkBtn);

@@ -3,48 +3,52 @@ package ru.ls.lines98.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.WebView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 
+import java.util.List;
+
+import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.R;
+import ru.ls.lines98.playerscore.DBHelper;
+import ru.ls.lines98.playerscore.PlayerScore;
+import ru.ls.lines98.playerscore.PlayerScoreHistory;
 
 public class HighScoreDialog {
 
 	private static final String VERSION = "1.1.0";
 	private static final String MY_GIT_ADDRESS = "https://github.com/OlegPref777";
-	AlertDialog AboutDlg;
+	AlertDialog HighScoreDlg;
 	LayoutInflater lInflater;
-	WebView DisplayWV;
+	ListView RecordList;
 	Button OkBtn;
 
 	public HighScoreDialog(Context context) {
-		AboutDlg = new AlertDialog.Builder(context).create();
-		AboutDlg.setTitle("Options");
+		HighScoreDlg = new AlertDialog.Builder(context).create();
+		HighScoreDlg.setTitle(MainActivity._this.getResources().getString(R.string.HighScores));
 		lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = lInflater.inflate(R.layout.dialog_about, AboutDlg.getListView());
-		DisplayWV = view.findViewById(R.id.DisplayWV);
+		View view = lInflater.inflate(R.layout.dialog_high_score, HighScoreDlg.getListView());
+		RecordList = view.findViewById(R.id.RecordList);
+		DBHelper dbHelper = new DBHelper(context);
+		List<PlayerScore> scores = dbHelper.getAll();
+		RecordList.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, scores));
 
-		String unencodedHtml = "<html><body><table>" + "<tr><td colspan=2 align=center><font size=5 color=Red>Game Lines</font></td></tr>"
-				+ "<tr><td>Author:</td><td>Trac Quang Hoa</td><td></td></tr>" + "<tr><td>Version:</td><td>"
-				+ VERSION + "</td><td></td></tr>" + "</table>" + "<a href='" + MY_GIT_ADDRESS + "'><i>" + MY_GIT_ADDRESS + "</i></a></body></html>";
-		String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(), Base64.NO_PADDING);
-		DisplayWV.loadData(encodedHtml, "text/html", "base64");
 		OkBtn = view.findViewById(R.id.OkBtn);
 		OkBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				AboutDlg.cancel();
+				HighScoreDlg.cancel();
 			}
 		});
-		AboutDlg.setView(view);
+		HighScoreDlg.setView(view);
 	}
 
 	public void ShowDialog(){
-		AboutDlg.show();
+		HighScoreDlg.show();
 	}
 
 //	public HighScoreDialog(Context context) {

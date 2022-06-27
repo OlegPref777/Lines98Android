@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
+import ru.ls.lines98.MainActivity;
+import ru.ls.lines98.R;
 import ru.ls.lines98.common.ColorUtil;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
@@ -56,6 +58,8 @@ public class GameBoard {
 	}
 
 	public void newGame(GameType gameType) {
+		String AppName = MainActivity._this.getResources().getString(R.string.app_name);
+		MainActivity._this.setTitle(AppName + " \"" + gameType.toString() + "\"");
 		initBoard();
 		addGrowingBall();
 		bakGameState = null;

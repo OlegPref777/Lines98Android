@@ -1,4 +1,4 @@
-package ru.ls.lines98.status;
+package ru.ls.lines98.playerscore;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,8 +11,14 @@ import ru.ls.lines98.common.StorageUtil;
 
 public class PlayerScoreHistory {
 
+	private List<PlayerScore> scores;
+	private static PlayerScoreHistory instance = new PlayerScoreHistory();
+	public static PlayerScoreHistory getInstance() {
+		return instance;
+	}
+
 	private PlayerScoreHistory() {
-		scores = StorageUtil.<List<PlayerScore>>load(MainActivity._this, SCORE_HISTORY_FILE_NAME).orElse(new ArrayList<>());
+		//scores = StorageUtil.<List<PlayerScore>>load(MainActivity._this, SCORE_HISTORY_FILE_NAME).orElse(new ArrayList<>());
 	}
 
 	public int getHighestScore() {
@@ -35,19 +41,12 @@ public class PlayerScoreHistory {
 	}
 
 	public void save() {
-		StorageUtil.save(scores, MainActivity._this, SCORE_HISTORY_FILE_NAME);
+		//StorageUtil.save(scores, MainActivity._this, SCORE_HISTORY_FILE_NAME);
 	}
 
 	private final static int SCORE_HISTORY_LIMIT = 10;
 
-	private final static String SCORE_HISTORY_FILE_NAME = "ScoreHistory";
 
-	private List<PlayerScore> scores;
 
-	private static PlayerScoreHistory instance = new PlayerScoreHistory();
-
-	public static PlayerScoreHistory getInstance() {
-		return instance;
-	}
 
 }

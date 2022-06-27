@@ -6,14 +6,38 @@ import android.graphics.Paint;
 
 import android.graphics.Typeface;
 
+import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Square;
 import ru.ls.lines98.common.ColorUtil;
 import ru.ls.lines98.common.Timer;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.NextBallDisplayType;
+import ru.ls.lines98.playerscore.DBHelper;
+import ru.ls.lines98.playerscore.PlayerScoreHistory;
 
 public class GameInfoBoard {
+
+	private int left = 1;
+	private int top = 2;
+	private int width = Square.SIZE * 9;
+	private int height = Square.SIZE + 5;
+
+	private GamePanel gamePanel;
+
+	private Score highestScore = new Score();
+	private Score score = new Score();
+	private DigitalClock clock = new DigitalClock();
+	private NextBallBoard nextBallBoard = new NextBallBoard();
+
+	private Timer clockTimer = new Timer(1000, new Runnable() {
+		@Override
+		public void run() {
+			clock.setSeconds(clock.getSeconds() + 1);
+			gamePanel.invalidate ();
+
+		}
+	});
 
 	public GameInfoBoard(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -34,8 +58,9 @@ public class GameInfoBoard {
 
 
 		clockTimer.start();
+		DBHelper dbHelper = new DBHelper(MainActivity._this);
 
-		new Thread(() -> highestScore.setScore(PlayerScoreHistory.getInstance().getHighestScore())).start();
+		new Thread(() -> highestScore.setScore(dbHelper.getHighScore(GameInfo.getCurrentInstance().getGameType()))).start();
 	}
 
 	public void draw(Canvas canvas) {
@@ -100,24 +125,4 @@ public class GameInfoBoard {
 		drawGameType(g);
 	}
 
-	private int left = 1;
-	private int top = 2;
-	private int width = Square.SIZE * 9;
-	private int height = Square.SIZE + 5;
-
-	private GamePanel gamePanel;
-
-	private Score highestScore = new Score();
-	private Score score = new Score();
-	private DigitalClock clock = new DigitalClock();
-	private NextBallBoard nextBallBoard = new NextBallBoard();
-
-	private Timer clockTimer = new Timer(1000, new Runnable() {
-		@Override
-		public void run() {
-			clock.setSeconds(clock.getSeconds() + 1);
-			gamePanel.invalidate ();
-
-		}
-	});
 }

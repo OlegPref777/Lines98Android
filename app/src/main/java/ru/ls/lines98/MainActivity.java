@@ -13,13 +13,15 @@ import ru.ls.lines98.game.GamePanel;
 import ru.ls.lines98.game.Square;
 
 import ru.ls.lines98.dialogs.AboutDialog;
+import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.dialogs.SettingsDialog;
+import ru.ls.lines98.playerscore.DBHelper;
 import ru.ls.lines98.sound.SoundManager;
 import ru.ls.lines98.status.GameInfoBoard;
 import ru.ls.lines98.dialogs.HighScoreDialog;
-import ru.ls.lines98.status.PlayerScore;
-import ru.ls.lines98.status.PlayerScoreHistory;
+import ru.ls.lines98.playerscore.PlayerScore;
+import ru.ls.lines98.playerscore.PlayerScoreHistory;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     GamePanel gamePanel;
@@ -55,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
         Square.SIZE = getDisplaySize().x / 9;
         Ball.MATURITY_SIZE = Square.SIZE * 33 / 45;
         Ball.GROWING_SIZE = Square.SIZE * 9 / 45;
-
-        setTitle("Lines98");
 
         setContentView(R.layout.activity_main);
         gamePanel = findViewById(R.id.gamePanel);
@@ -152,37 +154,42 @@ public class MainActivity extends AppCompatActivity {
 
         // Stop the playing clock
         gameInfoBoard.setClockState(false);
+        DBHelper dbHelper = new DBHelper(_this);
+        dbHelper.addOne(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
 
-        PlayerScoreHistory playerScoreHistory = PlayerScoreHistory.getInstance();
 
-        // Player gets a new high score
-        if (playerScoreHistory.isNewRecord(gameInfoBoard.getScore().getScore())) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder.setTitle("New high score");
-            builder.setMessage("You've got a high score. Please input your name");
-
-            final EditText input = new EditText(this);
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
-            builder.setView(input);
-            final String[] playerName = {""};
-
-            builder.setPositiveButton("OK", (dialog, which) -> playerName[0] = input.getText().toString());
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
-            //Setting the title manually
-            AlertDialog alert = builder.create();
-            alert.setTitle("AlertDialogExample");
-            alert.show();
-            if (playerName[0] != null && !"".equals(playerName[0])) {
-                playerScoreHistory.addHighScore(new PlayerScore(playerName[0], gameInfoBoard.getScore().getScore(),	gameInfoBoard.getClock().toString()));
-                playerScoreHistory.save();
-
-                showHighScoreDialog();
-            }
-        }
+//        PlayerScoreHistory playerScoreHistory = PlayerScoreHistory.getInstance();
+//
+//        // Player gets a new high score
+//        if (playerScoreHistory.isNewRecord(gameInfoBoard.getScore().getScore())) {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//            builder.setTitle("New high score");
+//            builder.setMessage("You've got a high score. Please input your name");
+//
+//            final EditText input = new EditText(this);
+//            input.setInputType(InputType.TYPE_CLASS_TEXT);
+//            builder.setView(input);
+//            final String[] playerName = {""};
+//
+//            builder.setPositiveButton("OK", (dialog, which) -> playerName[0] = input.getText().toString());
+//            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+//            //Setting the title manually
+//            AlertDialog alert = builder.create();
+//            alert.setTitle("AlertDialogExample");
+//
+//            if (playerName[0] != null && !"".equals(playerName[0])) {
+//                playerScoreHistory.addHighScore(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
+//                playerScoreHistory.save();
+//
+//                showHighScoreDialog();
+//            }
+//            DBHelper dbHelper = new DBHelper(_this);
+//            dbHelper.addOne(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
+//        }
 
         // Update highest score on the game status board
-        gameInfoBoard.getHighestScore().setScore(playerScoreHistory.getHighestScore());
+//        gameInfoBoard.getHighestScore().setScore(playerScoreHistory.getHighestScore());
     }
 
     public void endGame() {
