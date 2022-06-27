@@ -30,4 +30,11 @@
     <string name="AuthorString">Author</string>
     <string name="BasedOnProject">Based on the Trac Quang Hoa project</string>
     <string name="TracQuangHoaGit">https://github.com/hoaftq</string>
+    <string name="clear_records">Clear High Scores</string>
+    <string name="No">No</string>
+    <string name="Yes">Yes</string>
+    <string name="Date">Date</string>
+    <string name="game_type">Game type</string>
+    <string name="play_time">Play time</string>
+    <string name="score">Score</string>
 </resources>

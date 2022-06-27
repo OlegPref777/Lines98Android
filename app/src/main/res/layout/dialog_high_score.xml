@@ -5,21 +5,44 @@
     android:layout_height="match_parent"
     android:weightSum="100"
     >
+    <include layout="@layout/row_score"></include>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:weightSum="10">
+
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/RecordList" android:layout_weight="1"/>
-        <Button
+            android:id="@+id/RecordList"
+            android:layout_weight="10"
+            />
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/OkBtn"
-            android:text="Ok"
+            android:orientation="horizontal"
+            android:layout_weight="50"
+            android:weightSum="100"
             >
-        </Button>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/OkBtn"
+                android:text="@string/ok"
+                android:layout_weight="50"
+                >
+            </Button>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/ClearAllBtn"
+                android:text="@string/clear_records"
+                android:layout_weight="50"
+                >
+            </Button>
+
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -30,4 +30,11 @@
     <string name="AuthorString">Разработчик</string>
     <string name="BasedOnProject">За основу взят проект Trac Quang Hoa</string>
     <string name="TracQuangHoaGit">https://github.com/hoaftq</string>
+    <string name="clear_records">Очистить результаты</string>
+    <string name="No">Нет</string>
+    <string name="Yes">Да</string>
+    <string name="Date">Дата</string>
+    <string name="game_type">Вид игры</string>
+    <string name="play_time">Время игры</string>
+    <string name="score">Счёт</string>
 </resources>

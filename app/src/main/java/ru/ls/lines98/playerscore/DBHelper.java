@@ -49,11 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SCORE, score.getScore());
         long result = db.insert(TABLE_HIGH_SCORES, null, cv);
         db.close();
-        if(result == -1){
-            return false;
-        }else {
-            return true;
-        }
+        return result != -1;
     }
 
     public List<PlayerScore> getAll(){
@@ -70,9 +66,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 int gameType = cursor.getInt(3);
                 int Score = cursor.getInt(4);
                 GameType MyGameType = null;
-                for (int i = 0; i < GameTypeValues.length; i++){
-                    if(GameTypeValues[i].getValue() == gameType){
-                        MyGameType = GameTypeValues[i];
+                for (GameType gameTypeValue : GameTypeValues) {
+                    if (gameTypeValue.getValue() == gameType) {
+                        MyGameType = gameTypeValue;
                         break;
                     }
                 }
@@ -83,6 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return Ret;
     }
+
     public int getHighScore(GameType gameType){
         SQLiteDatabase db = this.getReadableDatabase();
         String SQLStatement = "SELECT MAX("+ COLUMN_SCORE + ") AS " + COLUMN_SCORE + " FROM " + TABLE_HIGH_SCORES + " WHERE " + COLUMN_GAME_TYPE + " = " + gameType.getValue() ;
@@ -101,4 +98,34 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean UpdateScoreRecord(PlayerScore score){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_RECORD_DATE, score.getRecordDate().getTime());
+        cv.put(COLUMN_PLAY_TIME, score.getPlayTimeSeconds());
+        cv.put(COLUMN_GAME_TYPE, score.getGameType().getValue());
+        cv.put(COLUMN_SCORE, score.getScore());
+
+        long result = db.update(TABLE_HIGH_SCORES, cv, COLUMN_GAME_TYPE + " = ? AND " +  COLUMN_SCORE + " = ?", new String[] {String.valueOf(score.getGameType().getValue()), String.valueOf(score.getScore())});
+        db.close();
+        return result != 0;
+    }
+
+    public boolean UpdateRecord(PlayerScore score){
+        int HighScore = getHighScore(score.getGameType());
+        if (HighScore == 0){
+            return addOne(score);
+        }
+        if (score.getScore() >= HighScore){
+            return UpdateScoreRecord(score);
+        }
+        return false;
+    }
+
+    public boolean ClearRecords(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_HIGH_SCORES, null, null);
+        db.close();
+        return result != 0;
+    }
 }

@@ -3,6 +3,7 @@ package ru.ls.lines98.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,12 +11,14 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.R;
 import ru.ls.lines98.playerscore.DBHelper;
 import ru.ls.lines98.playerscore.PlayerScore;
+import ru.ls.lines98.playerscore.PlayerScoreAdapter;
 
 
 public class HighScoreDialog {
@@ -25,7 +28,7 @@ public class HighScoreDialog {
 	AlertDialog HighScoreDlg;
 	LayoutInflater lInflater;
 	ListView RecordList;
-	Button OkBtn;
+	Button OkBtn, ClearAllBtn;
 
 	public HighScoreDialog(Context context) {
 		HighScoreDlg = new AlertDialog.Builder(context).create();
@@ -35,14 +38,24 @@ public class HighScoreDialog {
 		RecordList = view.findViewById(R.id.RecordList);
 		DBHelper dbHelper = new DBHelper(context);
 		List<PlayerScore> scores = dbHelper.getAll();
-		RecordList.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, scores));
+		RecordList.setAdapter(new PlayerScoreAdapter(context, scores));
 
 		OkBtn = view.findViewById(R.id.OkBtn);
+
 		OkBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				HighScoreDlg.cancel();
 			}
+		});
+		ClearAllBtn = view.findViewById(R.id.ClearAllBtn);
+		ClearAllBtn.setOnClickListener(view1 -> {
+			new AlertDialog.Builder(context)
+					.setTitle(context.getResources().getString(R.string.clear_records) + "?")
+					.setMessage(context.getResources().getString(R.string.clear_records) + "?")
+					.setNegativeButton(context.getResources().getString(R.string.No), null)
+					.setPositiveButton(context.getResources().getString(R.string.Yes), (arg0, arg1) -> dbHelper.ClearRecords()).create().show();
+
 		});
 		HighScoreDlg.setView(view);
 	}

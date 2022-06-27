@@ -151,11 +151,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveHighScore() {
         GameInfoBoard gameInfoBoard = gamePanel.getGameBoard().getGameInfoBoard();
-
         // Stop the playing clock
         gameInfoBoard.setClockState(false);
         DBHelper dbHelper = new DBHelper(_this);
-        dbHelper.addOne(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
+        if (gameInfoBoard.getScore().getScore() > 0){
+            dbHelper.UpdateRecord(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
+        }
     }
 
     public void endGame() {
