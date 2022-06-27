@@ -24,7 +24,7 @@ import ru.ls.lines98.R;
 public class PlayerScoreAdapter extends ArrayAdapter<PlayerScore> {
     Context ctx;
     LayoutInflater lInflater;
-    
+
     public PlayerScoreAdapter(@NonNull Context context, @NonNull List<PlayerScore> scores) {
         super(context, R.layout.row_score, scores);
         ctx = context;
