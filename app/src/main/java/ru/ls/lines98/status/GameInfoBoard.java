@@ -14,7 +14,7 @@ import ru.ls.lines98.common.Timer;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.NextBallDisplayType;
 import ru.ls.lines98.playerscore.DBHelper;
-import ru.ls.lines98.playerscore.PlayerScoreHistory;
+
 
 public class GameInfoBoard {
 
