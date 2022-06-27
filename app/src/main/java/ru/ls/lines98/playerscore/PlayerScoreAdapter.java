@@ -24,12 +24,10 @@ import ru.ls.lines98.R;
 public class PlayerScoreAdapter extends ArrayAdapter<PlayerScore> {
     Context ctx;
     LayoutInflater lInflater;
-    //ArrayList<PlayerScore> objects;
-    public int SelectedIndex = -1;
+    
     public PlayerScoreAdapter(@NonNull Context context, @NonNull List<PlayerScore> scores) {
         super(context, R.layout.row_score, scores);
         ctx = context;
-        //this.objects = scores;
         lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
