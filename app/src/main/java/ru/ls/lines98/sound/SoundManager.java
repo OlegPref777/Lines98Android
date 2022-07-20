@@ -47,12 +47,15 @@ public class SoundManager {
 	}
 
 	public static void playCantMoveSound() {
-		soundManager.soundPool.play(soundManager.CANT_MOVE_SOUND_ID, 1, 1, 0, 0, 1);
+		if (GameInfo.getCurrentInstance().isCantMoveSound()) {
+			soundManager.soundPool.play(soundManager.CANT_MOVE_SOUND_ID, 1, 1, 0, 0, 1);
+		}
+
 	}
 
 	public static void playJumSound() {
 		if (GameInfo.getCurrentInstance().isBallJumpingSound()) {
-			soundManager.JUMP_SOUND_STREAM_ID = soundManager.soundPool.play(soundManager.JUMP_SOUND_ID, 1, 1, 0, -1, 1.15f);
+			soundManager.JUMP_SOUND_STREAM_ID = soundManager.soundPool.play(soundManager.JUMP_SOUND_ID, 1, 1, 0, -1, 1.0f);
 		}
 	}
 

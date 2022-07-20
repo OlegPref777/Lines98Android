@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/windows">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:background="@color/windows">
         <TextView
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:text="@string/DefaultGameType"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
@@ -30,22 +32,25 @@
 
                 <RadioButton
                     android:id="@+id/LineRB"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
                     android:layout_weight="30"
                     android:text="@string/Lines" />
 
                 <RadioButton
                     android:id="@+id/BlockRB"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
                     android:layout_weight="30"
                     android:text="@string/Blocks" />
 
                 <RadioButton
                     android:id="@+id/SquareRB"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
                     android:layout_weight="30"
                     android:text="@string/Squares" />
 
@@ -57,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@color/windows"
         android:weightSum="100">
 
         <TextView
@@ -65,7 +71,7 @@
             android:layout_height="match_parent"
             android:layout_weight="50"
             android:text="@string/next_ball_display_type"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="start|center_vertical"
             />
@@ -79,6 +85,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/windows"
         android:orientation="vertical">
         <TextView
             android:id="@+id/textView1"
@@ -86,7 +93,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/play_sounds"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             />
@@ -94,27 +101,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="90">
+            android:weightSum="100">
             <CheckBox
                 android:id="@+id/DestroySoundCB"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="30"
+                android:layout_weight="25"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
                 android:text = "@string/destroy">
             </CheckBox>
             <CheckBox
                 android:id="@+id/MovingSoundCB"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="30"
+                android:layout_weight="25"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
                 android:text = "@string/moving">
             </CheckBox>
             <CheckBox
                 android:id="@+id/JumpingSoundCB"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="30"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
+                android:layout_weight="25"
                 android:text = "@string/jumping">
+            </CheckBox>
+            <CheckBox
+                android:id="@+id/CantMoveSoundCB"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black"
+                android:layout_weight="25"
+                android:text = "@string/cant_move">
             </CheckBox>
 
         </LinearLayout>

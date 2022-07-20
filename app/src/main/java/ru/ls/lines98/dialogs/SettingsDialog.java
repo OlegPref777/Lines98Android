@@ -21,11 +21,12 @@ import ru.ls.lines98.option.NextBallDisplayType;
 
 
 public class SettingsDialog {
+
 	GameInfo gameInfo = GameInfo.getCurrentInstance().getClone();
 	RadioGroup GameTypeRG;
 	RadioButton LineRB, SquareRB, BlockRB;
 	Button OkBtn, CancelBtn;
-	CheckBox DestroySoundCB, MovingSoundCB, JumpingSoundCB;
+	CheckBox DestroySoundCB, MovingSoundCB, JumpingSoundCB, CantMoveSoundCB;
 	Spinner NextBallDisplayCB;
 
 
@@ -110,6 +111,14 @@ public class SettingsDialog {
 			@Override
 			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 				gameInfo.setBallJumpingSound(JumpingSoundCB.isChecked());
+			}
+		});
+		CantMoveSoundCB = (CheckBox)view.findViewById(R.id.CantMoveSoundCB);
+		CantMoveSoundCB.setChecked(gameInfo.isCantMoveSound());
+		CantMoveSoundCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+				gameInfo.setCantMoveSound(CantMoveSoundCB.isChecked());
 			}
 		});
 		OkBtn = view.findViewById(R.id.OkBtn);

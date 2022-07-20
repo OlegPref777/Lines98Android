@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/windows"
             app:popupTheme="@style/Theme.Lines98Android.PopupOverlay" />
         <ru.ls.lines98.game.GamePanel
             android:layout_width="match_parent"

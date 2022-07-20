@@ -6,6 +6,34 @@ import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.common.StorageUtil;
 
 public class GameInfo implements Cloneable, Serializable {
+	private GameType gameType = GameType.LINE;
+	private GameType defaultGameType = GameType.LINE;
+
+	private NextBallDisplayType nextBallDisplayType = NextBallDisplayType.ShowBoth;
+
+	private int jumpValue = 60;
+	private int explosionValue = 30;
+	private int movementValue = 10;
+	private int appearanceValue = 20;
+
+	private boolean ballJumpingSound = false;
+	private boolean destroySound = true;
+	private boolean movementSound = true;
+
+	public boolean isCantMoveSound() {
+		return cantMoveSound;
+	}
+
+	public void setCantMoveSound(boolean cantMoveSound) {
+		this.cantMoveSound = cantMoveSound;
+	}
+
+	private boolean cantMoveSound = true;
+
+	private static GameInfo currentInstance;
+
+	private final static String CONFIG_FILE_NAME = "Config";
+
 
 	private static final long serialVersionUID = -4449406179310549758L;
 
@@ -117,23 +145,6 @@ public class GameInfo implements Cloneable, Serializable {
 		return clone();
 	}
 
-	private GameType gameType = GameType.LINE;
-	private GameType defaultGameType = GameType.LINE;
-
-	private NextBallDisplayType nextBallDisplayType = NextBallDisplayType.ShowBoth;
-
-	private int jumpValue = 60;
-	private int explosionValue = 30;
-	private int movementValue = 10;
-	private int appearanceValue = 20;
-
-	private boolean ballJumpingSound = false;
-	private boolean destroySound = true;
-	private boolean movementSound = true;
-
-	private static GameInfo currentInstance;
-
-	private final static String CONFIG_FILE_NAME = "Config";
 	static {
 		currentInstance = StorageUtil.<GameInfo>load(MainActivity._this, CONFIG_FILE_NAME).orElse(
 				new GameInfo()

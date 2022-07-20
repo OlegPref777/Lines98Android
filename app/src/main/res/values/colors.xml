@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="Trans">#00FFFFFF</color>
     <color name="TableFore">#FF880088</color>
+    <color name="windows">#FFC3C3C3</color>
 </resources>
