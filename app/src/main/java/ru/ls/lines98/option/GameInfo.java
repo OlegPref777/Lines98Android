@@ -135,6 +135,8 @@ public class GameInfo implements Cloneable, Serializable {
 
 	private final static String CONFIG_FILE_NAME = "Config";
 	static {
-		currentInstance = StorageUtil.<GameInfo>load(MainActivity._this, CONFIG_FILE_NAME).orElse(new GameInfo());
+		currentInstance = StorageUtil.<GameInfo>load(MainActivity._this, CONFIG_FILE_NAME).orElse(
+				new GameInfo()
+		);
 	}
 }

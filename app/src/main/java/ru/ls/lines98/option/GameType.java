@@ -24,8 +24,10 @@ public enum GameType {
 			return  MainActivity._this.getResources().getString(R.string.Lines);
 		} else if (this == BLOCK){
 			return  MainActivity._this.getResources().getString(R.string.Blocks);
-		} else {
+		} else if (this == SQUARE){
 			return  MainActivity._this.getResources().getString(R.string.Squares);
+		}else {
+			return  MainActivity._this.getResources().getString(R.string.Unknown);
 		}
 	}
 }

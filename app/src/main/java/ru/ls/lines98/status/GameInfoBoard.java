@@ -14,6 +14,7 @@ import ru.ls.lines98.common.Timer;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.NextBallDisplayType;
 import ru.ls.lines98.playerscore.DBHelper;
+import ru.ls.lines98.playerscore.ScoreHistoryDAO;
 
 
 public class GameInfoBoard {
@@ -58,9 +59,10 @@ public class GameInfoBoard {
 
 
 		clockTimer.start();
-		DBHelper dbHelper = new DBHelper(MainActivity._this);
 
-		new Thread(() -> highestScore.setScore(dbHelper.getHighScore(GameInfo.getCurrentInstance().getGameType()))).start();
+		ScoreHistoryDAO scoreHistoryDAO = new ScoreHistoryDAO(MainActivity._this);
+
+		new Thread(() -> highestScore.setScore(scoreHistoryDAO.getHighScore(GameInfo.getCurrentInstance().getGameType()))).start();
 	}
 
 	public void draw(Canvas canvas) {

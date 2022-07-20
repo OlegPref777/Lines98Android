@@ -37,4 +37,5 @@
     <string name="game_type">Вид игры</string>
     <string name="play_time">Время игры</string>
     <string name="score">Счёт</string>
+    <string name="Unknown">Неизвестный</string>
 </resources>

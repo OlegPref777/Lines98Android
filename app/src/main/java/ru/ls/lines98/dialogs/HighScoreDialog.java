@@ -19,6 +19,7 @@ import ru.ls.lines98.R;
 import ru.ls.lines98.playerscore.DBHelper;
 import ru.ls.lines98.playerscore.PlayerScore;
 import ru.ls.lines98.playerscore.PlayerScoreAdapter;
+import ru.ls.lines98.playerscore.ScoreHistoryDAO;
 
 
 public class HighScoreDialog {
@@ -36,8 +37,8 @@ public class HighScoreDialog {
 		lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = lInflater.inflate(R.layout.dialog_high_score, HighScoreDlg.getListView());
 		RecordList = view.findViewById(R.id.RecordList);
-		DBHelper dbHelper = new DBHelper(context);
-		List<PlayerScore> scores = dbHelper.getAll();
+		ScoreHistoryDAO scoreHistoryDAO = new ScoreHistoryDAO(context);
+		List<PlayerScore> scores = scoreHistoryDAO.getAll();
 		RecordList.setAdapter(new PlayerScoreAdapter(context, scores));
 
 		OkBtn = view.findViewById(R.id.OkBtn);
@@ -54,7 +55,7 @@ public class HighScoreDialog {
 					.setTitle(context.getResources().getString(R.string.clear_records) + "?")
 					.setMessage(context.getResources().getString(R.string.clear_records) + "?")
 					.setNegativeButton(context.getResources().getString(R.string.No), null)
-					.setPositiveButton(context.getResources().getString(R.string.Yes), (arg0, arg1) -> dbHelper.ClearRecords()).create().show();
+					.setPositiveButton(context.getResources().getString(R.string.Yes), (arg0, arg1) -> scoreHistoryDAO.ClearRecords()).create().show();
 
 		});
 		HighScoreDlg.setView(view);

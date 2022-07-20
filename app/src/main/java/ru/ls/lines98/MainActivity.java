@@ -17,6 +17,7 @@ import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.dialogs.SettingsDialog;
 import ru.ls.lines98.playerscore.DBHelper;
+import ru.ls.lines98.playerscore.ScoreHistoryDAO;
 import ru.ls.lines98.sound.SoundManager;
 import ru.ls.lines98.status.GameInfoBoard;
 import ru.ls.lines98.dialogs.HighScoreDialog;
@@ -153,9 +154,9 @@ public class MainActivity extends AppCompatActivity {
         GameInfoBoard gameInfoBoard = gamePanel.getGameBoard().getGameInfoBoard();
         // Stop the playing clock
         gameInfoBoard.setClockState(false);
-        DBHelper dbHelper = new DBHelper(_this);
+        ScoreHistoryDAO scoreHistoryDAO = new ScoreHistoryDAO(this);
         if (gameInfoBoard.getScore().getScore() > 0){
-            dbHelper.UpdateRecord(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
+            scoreHistoryDAO.UpdateRecord(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
         }
     }
 

@@ -37,4 +37,5 @@
     <string name="game_type">Game type</string>
     <string name="play_time">Play time</string>
     <string name="score">Score</string>
+    <string name="Unknown">Unknown</string>
 </resources>
