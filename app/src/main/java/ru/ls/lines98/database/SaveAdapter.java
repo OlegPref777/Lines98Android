@@ -3,11 +3,16 @@ package ru.ls.lines98.database;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -40,6 +45,10 @@ public class SaveAdapter extends ArrayAdapter<SaveGame> {
         }
 
         SaveGame saveGame = getItem(position);
+        ImageView SavePreview = view.findViewById(R.id.SavePreview);
+
+        SavePreview.setImageBitmap(saveGame.getSavePreview());
+
         TextView DateTV = view.findViewById(R.id.DateTV);
         TextView GameTypeTV = view.findViewById(R.id.GameTypeTV);
         TextView PlayTimeTV = view.findViewById(R.id.PlayTimeTV);
@@ -54,6 +63,7 @@ public class SaveAdapter extends ArrayAdapter<SaveGame> {
             PlayTimeTV.setTextColor(TableForeSelected);
             ScoreTV.setTextColor(TableForeSelected);
             IsAutoSave.setTextColor(TableForeSelected);
+
 
         }else{
             view.setBackground(ctx.getDrawable(R.drawable.rect_rounded));

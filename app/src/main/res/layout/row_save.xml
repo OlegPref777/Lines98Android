@@ -18,10 +18,11 @@
         android:focusable="false"
         android:focusableInTouchMode="false">
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/SavePreview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="10"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/rect_rounded"
             android:focusable="false"
             android:focusableInTouchMode="false"/>
