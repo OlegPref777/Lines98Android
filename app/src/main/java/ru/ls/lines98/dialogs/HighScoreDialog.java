@@ -3,23 +3,19 @@ package ru.ls.lines98.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.R;
-import ru.ls.lines98.playerscore.DBHelper;
-import ru.ls.lines98.playerscore.PlayerScore;
-import ru.ls.lines98.playerscore.PlayerScoreAdapter;
-import ru.ls.lines98.playerscore.ScoreHistoryDAO;
+import ru.ls.lines98.database.PlayerScore;
+import ru.ls.lines98.database.PlayerScoreAdapter;
+import ru.ls.lines98.database.ScoreHistoryDAO;
 
 
 public class HighScoreDialog {

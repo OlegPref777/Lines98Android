@@ -1,4 +1,4 @@
-package ru.ls.lines98.playerscore;
+package ru.ls.lines98.database;
 
 import java.util.Date;
 

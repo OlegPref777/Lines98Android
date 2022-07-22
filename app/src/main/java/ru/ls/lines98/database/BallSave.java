@@ -1,4 +1,4 @@
-package ru.ls.lines98.playerscore;
+package ru.ls.lines98.database;
 
 import ru.ls.lines98.game.Ball;
 import ru.ls.lines98.game.BallState;

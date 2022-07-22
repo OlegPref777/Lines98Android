@@ -16,11 +16,11 @@ import ru.ls.lines98.common.ColorUtil;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.option.NextBallDisplayType;
-import ru.ls.lines98.playerscore.SaveGameDAO;
+import ru.ls.lines98.database.SaveGameDAO;
 import ru.ls.lines98.sound.SoundManager;
-import ru.ls.lines98.playerscore.BallSave;
+import ru.ls.lines98.database.BallSave;
 import ru.ls.lines98.status.GameInfoBoard;
-import ru.ls.lines98.playerscore.SaveGame;
+import ru.ls.lines98.database.SaveGame;
 import ru.ls.lines98.status.GameState;
 
 public class GameBoard {

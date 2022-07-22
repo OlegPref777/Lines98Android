@@ -1,5 +1,5 @@
-package ru.ls.lines98.playerscore;
-import static ru.ls.lines98.playerscore.DBHelper.*;
+package ru.ls.lines98.database;
+import static ru.ls.lines98.database.DBHelper.*;
 
 import android.content.ContentValues;
 import android.content.Context;

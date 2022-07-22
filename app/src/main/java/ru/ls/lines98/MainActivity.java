@@ -14,13 +14,13 @@ import ru.ls.lines98.dialogs.AboutDialog;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.dialogs.SettingsDialog;
-import ru.ls.lines98.playerscore.SaveGameDAO;
-import ru.ls.lines98.playerscore.ScoreHistoryDAO;
+import ru.ls.lines98.database.SaveGameDAO;
+import ru.ls.lines98.database.ScoreHistoryDAO;
 import ru.ls.lines98.sound.SoundManager;
 import ru.ls.lines98.status.GameInfoBoard;
 import ru.ls.lines98.dialogs.HighScoreDialog;
-import ru.ls.lines98.playerscore.PlayerScore;
-import ru.ls.lines98.playerscore.SaveGame;
+import ru.ls.lines98.database.PlayerScore;
+import ru.ls.lines98.database.SaveGame;
 
 
 import android.view.Menu;
