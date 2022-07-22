@@ -1,6 +1,5 @@
 package ru.ls.lines98.playerscore;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import ru.ls.lines98.option.GameType;

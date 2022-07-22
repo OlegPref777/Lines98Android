@@ -11,7 +11,11 @@ import java.io.File;
 
 public class DBHelper extends SQLiteOpenHelper {
     private final static String DB_FILE_NAME = "Lines98.db";
-    private final static int DB_VERSION = 1;
+    private final static int DB_VERSION = 2;
+    public static final String COLUMN_ID = "ID";
+    public static final String COLUMN_PLAY_TIME = "PLAY_TIME";
+    public static final String COLUMN_GAME_TYPE = "GAME_TYPE";
+    public static final String COLUMN_SCORE = "SCORE";
 
 
     public static DBHelper newDBHelper (@Nullable Context context) {
@@ -32,11 +36,13 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         ScoreHistoryDAO.onCreate(sqLiteDatabase);
+        SaveGameDAO.onCreate(sqLiteDatabase);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         ScoreHistoryDAO.onUpgrade(sqLiteDatabase, oldVersion, newVersion);
+        SaveGameDAO.onUpgrade(sqLiteDatabase, oldVersion, newVersion);
     }
 
 

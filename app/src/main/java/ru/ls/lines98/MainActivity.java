@@ -1,9 +1,7 @@
 package ru.ls.lines98;
 
-import android.app.AlertDialog;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Display;
 
 
@@ -16,17 +14,17 @@ import ru.ls.lines98.dialogs.AboutDialog;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.dialogs.SettingsDialog;
-import ru.ls.lines98.playerscore.DBHelper;
+import ru.ls.lines98.playerscore.SaveGameDAO;
 import ru.ls.lines98.playerscore.ScoreHistoryDAO;
 import ru.ls.lines98.sound.SoundManager;
 import ru.ls.lines98.status.GameInfoBoard;
 import ru.ls.lines98.dialogs.HighScoreDialog;
 import ru.ls.lines98.playerscore.PlayerScore;
+import ru.ls.lines98.playerscore.SaveGame;
 
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -129,8 +127,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.LoadGame){
-            gamePanel.getGameBoard().loadGame();
-            return true;
+            SaveGame mySaveGame = new SaveGameDAO(MainActivity._this).getLast();
+            if (mySaveGame != null){
+                gamePanel.getGameBoard().loadGame(mySaveGame);
+                return true;
+            }else {
+                return false;
+            }
         }
 
         if (id == R.id.SaveGame){

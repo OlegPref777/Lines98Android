@@ -4,15 +4,31 @@ import java.util.List;
 
 import ru.ls.lines98.common.PrimitiveBall;
 import ru.ls.lines98.option.GameInfo;
+import ru.ls.lines98.playerscore.BallSave;
 import ru.ls.lines98.sound.SoundManager;
 
 public class Ball extends PrimitiveBall {
+
+	protected Square square;
+	private BallState ballState;
+	private boolean isUpDirect = true;
+	private Thread animateThread;
+
+	public static int MATURITY_SIZE = 33;
+	public static int GROWING_SIZE = 9;
 
 	public Ball(int color, BallState ballState, Square square) {
 		super();
 		this.square = square;
 		setBallState(ballState);
 		setColor(color);
+	}
+
+	public Ball(BallSave ballSave, Square square) {
+		super();
+		this.square = square;
+		setBallState(ballSave.getState());
+		setColor(ballSave.getColor());
 	}
 
 	@Override
@@ -162,11 +178,5 @@ public class Ball extends PrimitiveBall {
 		return new Ball(color, ballState == BallState.ANIMATE ? BallState.MATURE : ballState, square);
 	}
 
-	protected Square square;
-	private BallState ballState;
-	private boolean isUpDirect = true;
-	private Thread animateThread;
 
-	public static int MATURITY_SIZE = 33;
-	public static int GROWING_SIZE = 9;
 }

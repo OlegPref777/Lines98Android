@@ -1,5 +1,7 @@
 package ru.ls.lines98.playerscore;
 
+import static ru.ls.lines98.playerscore.DBHelper.*;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -13,11 +15,7 @@ import ru.ls.lines98.option.GameType;
 
 public class ScoreHistoryDAO {
     public static final String TABLE_HIGH_SCORES = "HIGH_SCORES";
-    public static final String COLUMN_ID = "ID";
     public static final String COLUMN_RECORD_DATE = "RECORD_DATE";
-    public static final String COLUMN_PLAY_TIME = "PLAY_TIME";
-    public static final String COLUMN_GAME_TYPE = "GAME_TYPE";
-    public static final String COLUMN_SCORE = "SCORE";
 
     private DBHelper dbHelper;
     public static void onCreate(SQLiteDatabase sqLiteDatabase) {

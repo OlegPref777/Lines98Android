@@ -4,6 +4,7 @@ package ru.ls.lines98.game;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -15,8 +16,12 @@ import ru.ls.lines98.common.ColorUtil;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.option.NextBallDisplayType;
+import ru.ls.lines98.playerscore.SaveGameDAO;
 import ru.ls.lines98.sound.SoundManager;
+import ru.ls.lines98.playerscore.BallSave;
 import ru.ls.lines98.status.GameInfoBoard;
+import ru.ls.lines98.playerscore.SaveGame;
+import ru.ls.lines98.status.GameState;
 
 public class GameBoard {
 
@@ -111,16 +116,75 @@ public class GameBoard {
 	}
 
 	public void saveGame() {
-		savSeconds = gameInfoBoard.getClock().getSeconds();
-		saveGame(savGameState = new GameState());
+		SaveGame mySaveGame = new SaveGame();
+		mySaveGame.setGameType (GameInfo.getCurrentInstance().getGameType());
+		mySaveGame.setSaveDate(new Date());
+		mySaveGame.setPlayTimeSeconds(gameInfoBoard.getClock().getSeconds());
+		mySaveGame.setScore(gameInfoBoard.getScore().getScore());
+		BallSave Balls[][] = mySaveGame.getBallSaves();
+		int NextColors[] = mySaveGame.getNextColors();
+
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				if (squareArray[i][j].getBall() != null) {
+					Balls[i][j] = new BallSave(squareArray[i][j].getBall());
+				} else {
+					Balls[i][j] = null;
+				}
+			}
+		}
+
+
+		for (int i = 0; i < 3; i++) {
+			NextColors[i] = nextColorArray[i];
+		}
+
+
+		mySaveGame.setNextPositions(nextPositionList);
+
+		new SaveGameDAO(MainActivity._this).addOne(mySaveGame);
 	}
 
-	public void loadGame() {
-		if (savGameState != null) {
-			gameInfoBoard.getClock().setSeconds(savSeconds);
-			restoreGame(savGameState);
-			bakGameState = null;
+	public void loadGame(SaveGame mySaveGame) {
+
+		String AppName = MainActivity._this.getResources().getString(R.string.app_name);
+		MainActivity._this.setTitle(AppName + " \"" + mySaveGame.getGameType().toString() + "\"");
+
+		bakGameState = null;
+		gameOver = false;
+
+		if (selectedPos != null) {
+			getSquare(selectedPos).getBall().unSelect();
+			selectedPos = null;
 		}
+
+		BallSave[][] ballSaves =  mySaveGame.getBallSaves();
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				if (ballSaves[i][j] != null){
+					squareArray[i][j].setBall(new Ball(ballSaves[i][j], squareArray[i][j]));
+				}else {
+					squareArray[i][j].setBall(null);
+				}
+
+			}
+		}
+
+		int[] NextColors = mySaveGame.getNextColors();
+		for (int i = 0; i < 3; i++) {
+			nextColorArray[i] =  NextColors[i];
+		}
+
+		nextPositionList = mySaveGame.getNextPositions();
+
+		gameInfoBoard.getNextBallBoard().setNextColors(nextColorArray);
+		gameInfoBoard.getClock().setSeconds(mySaveGame.getPlayTimeSeconds());
+		gameInfoBoard.getScore().setScore(mySaveGame.getScore());
+		gameInfoBoard.setClockState(true);
+
+		GameInfo.getCurrentInstance().setGameType(mySaveGame.getGameType());
+
+		gamePanel.invalidate();
 	}
 
 	public Position squareFromMousePos(int x, int y) {
@@ -156,7 +220,7 @@ public class GameBoard {
 		if (bakGameState == null) {
 			bakGameState = new GameState();
 		}
-		saveGame(bakGameState);
+		saveState(bakGameState);
 
 		final Square squareFrom = squareArray[selectedPos.x][selectedPos.y];
 		final Ball ballFrom = squareFrom.getBall();
@@ -217,6 +281,32 @@ public class GameBoard {
 		moveThread.start();
 
 		return true;
+	}
+
+	private void saveState(GameState MyGameState) {
+
+		MyGameState.Score =gameInfoBoard.getScore().getScore();
+
+		try {
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < col; j++) {
+					if (squareArray[i][j].getBall() != null) {
+						MyGameState.bakBallArray[i][j] = (Ball) (squareArray[i][j].getBall().clone());
+					} else {
+						MyGameState.bakBallArray[i][j] = null;
+					}
+				}
+			}
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < 3; i++) {
+			MyGameState.bakNextColorArray[i] = nextColorArray[i];
+		}
+
+		MyGameState.bakNextPositionList = new ArrayList<Position>();
+		MyGameState.bakNextPositionList.addAll(nextPositionList);
 	}
 
 	private void explosionBall(List<Square> listCompleteSquare) {
@@ -615,30 +705,6 @@ public class GameBoard {
 		return listSquare;
 	}
 
-	private void saveGame(GameState gameState) {
-		try {
-			for (int i = 0; i < row; i++) {
-				for (int j = 0; j < col; j++) {
-					if (squareArray[i][j].getBall() != null) {
-						gameState.bakBallArray[i][j] = (Ball) (squareArray[i][j].getBall().clone());
-					} else {
-						gameState.bakBallArray[i][j] = null;
-					}
-				}
-			}
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-
-		for (int i = 0; i < 3; i++) {
-			gameState.bakNextColorArray[i] = nextColorArray[i];
-		}
-
-		gameState.bakNextPositionList = new ArrayList<Position>();
-		gameState.bakNextPositionList.addAll(nextPositionList);
-
-		gameState.score = gameInfoBoard.getScore().getScore();
-	}
 
 	private void restoreGame(GameState gameState) {
 		if (selectedPos != null) {
@@ -658,13 +724,13 @@ public class GameBoard {
 
 		nextPositionList = gameState.bakNextPositionList;
 
-		gameInfoBoard.getScore().setScore(gameState.score);
+		gameInfoBoard.getScore().setScore(gameState.Score);
 
 		gamePanel.invalidate();
 	}
 
-	private int row = 9;
-	private int col = 9;
+	public static int row = 9;
+	public static int  col = 9;
 	private Square[][] squareArray = new Square[row][col];
 	boolean[][] visitedArray = new boolean[row][col];
 	private Position selectedPos;
@@ -698,10 +764,4 @@ public class GameBoard {
 		}
 	}
 
-	private class GameState {
-		public Ball[][] bakBallArray = new Ball[row][col];
-		public int[] bakNextColorArray = new int[3];
-		public List<Position> bakNextPositionList;
-		public int score;
-	}
 }
