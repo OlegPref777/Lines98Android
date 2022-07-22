@@ -93,12 +93,13 @@ public class ScoreHistoryDAO {
     public boolean UpdateScoreRecord(PlayerScore score){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
+
         cv.put(COLUMN_RECORD_DATE, score.getRecordDate().getTime());
         cv.put(COLUMN_PLAY_TIME, score.getPlayTimeSeconds());
         cv.put(COLUMN_GAME_TYPE, score.getGameType().getValue());
         cv.put(COLUMN_SCORE, score.getScore());
 
-        long result = db.update(TABLE_HIGH_SCORES, cv, COLUMN_GAME_TYPE + " = ? AND " +  COLUMN_SCORE + " = ?", new String[] {String.valueOf(score.getGameType().getValue()), String.valueOf(score.getScore())});
+        long result = db.update(TABLE_HIGH_SCORES, cv, COLUMN_GAME_TYPE + " = ? ", new String[] {String.valueOf(score.getGameType().getValue())});
         db.close();
         return result != 0;
     }

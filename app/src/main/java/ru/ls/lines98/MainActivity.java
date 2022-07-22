@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         saveHighScore();
+        super.onBackPressed();
     }
 
     @Override

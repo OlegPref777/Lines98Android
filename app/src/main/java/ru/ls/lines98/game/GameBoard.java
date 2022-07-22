@@ -13,6 +13,7 @@ import java.util.Random;
 import ru.ls.lines98.MainActivity;
 import ru.ls.lines98.R;
 import ru.ls.lines98.common.ColorUtil;
+import ru.ls.lines98.database.ScoreHistoryDAO;
 import ru.ls.lines98.option.GameInfo;
 import ru.ls.lines98.option.GameType;
 import ru.ls.lines98.option.NextBallDisplayType;
@@ -74,6 +75,7 @@ public class GameBoard {
 		gameInfoBoard.getClock().setSeconds(0);
 		gameInfoBoard.getScore().setScore(0);
 		gameInfoBoard.setClockState(true);
+		gameInfoBoard.getHighestScore().setScore(new ScoreHistoryDAO(MainActivity._this).getHighScore(gameType));
 
 		GameInfo.getCurrentInstance().setGameType(gameType);
 
@@ -180,6 +182,7 @@ public class GameBoard {
 		gameInfoBoard.getNextBallBoard().setNextColors(nextColorArray);
 		gameInfoBoard.getClock().setSeconds(mySaveGame.getPlayTimeSeconds());
 		gameInfoBoard.getScore().setScore(mySaveGame.getScore());
+		gameInfoBoard.getHighestScore().setScore(new ScoreHistoryDAO(MainActivity._this).getHighScore(mySaveGame.getGameType()));
 		gameInfoBoard.setClockState(true);
 
 		GameInfo.getCurrentInstance().setGameType(mySaveGame.getGameType());
