@@ -16,6 +16,17 @@ public class SaveGame {
     private BallSave[][] ballSaves = new BallSave[GameBoard.row][GameBoard.col];
     private int[] NextColors = new int[3];
     private List<Position> NextPositions;
+    private boolean AutoSave;
+
+    public boolean isAutoSave() {
+        return AutoSave;
+    }
+
+    public void setAutoSave(boolean autoSave) {
+        AutoSave = autoSave;
+    }
+
+
 
     public BallSave[][] getBallSaves() {
         return ballSaves;

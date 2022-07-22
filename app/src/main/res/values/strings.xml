@@ -39,4 +39,7 @@
     <string name="score">Score</string>
     <string name="Unknown">Unknown</string>
     <string name="cant_move">Can\'t move</string>
+    <string name="SavedGames">Saved games</string>
+    <string name="delete_save">Delete save</string>
+    <string name="AutoSave">AutoSave</string>
 </resources>

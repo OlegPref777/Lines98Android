@@ -39,4 +39,7 @@
     <string name="score">Счёт</string>
     <string name="Unknown">Неизвестный</string>
     <string name="cant_move">Нет хода</string>
+    <string name="SavedGames">Сохранённые игры</string>
+    <string name="delete_save">Удалить сохранение</string>
+    <string name="AutoSave">Автосохранение</string>
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Display;
 
 
+import ru.ls.lines98.dialogs.LoadGameDialog;
 import ru.ls.lines98.game.Ball;
 import ru.ls.lines98.game.GameBoard;
 import ru.ls.lines98.game.GamePanel;
@@ -127,13 +128,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.LoadGame){
-            SaveGame mySaveGame = new SaveGameDAO(MainActivity._this).getLast();
-            if (mySaveGame != null){
-                gamePanel.getGameBoard().loadGame(mySaveGame);
-                return true;
-            }else {
-                return false;
-            }
+            showLoadGameDialog();
+            return true;
+//            SaveGame mySaveGame = new SaveGameDAO(MainActivity._this).getLast();
+//            if (mySaveGame != null){
+//                gamePanel.getGameBoard().loadGame(mySaveGame);
+//                return true;
+//            }else {
+//                return false;
+//            }
         }
 
         if (id == R.id.SaveGame){
@@ -172,4 +175,9 @@ public class MainActivity extends AppCompatActivity {
         HighScoreDialog highScoreDialog = new HighScoreDialog(MainActivity.this);
         highScoreDialog.ShowDialog();
     }
+    private void showLoadGameDialog() {
+        LoadGameDialog loadGameDialog = new LoadGameDialog(MainActivity.this, gamePanel);
+        loadGameDialog.ShowDialog();
+    }
+
 }
