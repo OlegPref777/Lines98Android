@@ -71,7 +71,7 @@ public class SaveAdapter extends ArrayAdapter<SaveGame> {
         GameTypeTV.setText(saveGame.getGameType().toString());
         PlayTimeTV.setText(String.valueOf(saveGame.getPlayTimeSeconds()));
         ScoreTV.setText(String.valueOf(saveGame.getScore()));
-        IsAutoSave.setSelected(saveGame.isAutoSave());
+        IsAutoSave.setChecked(saveGame.isAutoSave());
         return view;
     }
 

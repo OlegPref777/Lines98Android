@@ -117,10 +117,11 @@ public class GameBoard {
 		}
 	}
 
-	public void saveGame() {
+	public void saveGame(boolean IsAutoSave) {
 		SaveGame mySaveGame = new SaveGame();
 		mySaveGame.setGameType (GameInfo.getCurrentInstance().getGameType());
 		mySaveGame.setSaveDate(new Date());
+		mySaveGame.setAutoSave(IsAutoSave);
 		mySaveGame.setPlayTimeSeconds(gameInfoBoard.getClock().getSeconds());
 		mySaveGame.setScore(gameInfoBoard.getScore().getScore());
 		BallSave Balls[][] = mySaveGame.getBallSaves();
@@ -140,11 +141,13 @@ public class GameBoard {
 		for (int i = 0; i < 3; i++) {
 			NextColors[i] = nextColorArray[i];
 		}
-
-
 		mySaveGame.setNextPositions(nextPositionList);
 
-		new SaveGameDAO(MainActivity._this).addOne(mySaveGame);
+		if (IsAutoSave){
+			new SaveGameDAO(MainActivity._this).UpdateAutoSave(mySaveGame);
+		}else {
+			new SaveGameDAO(MainActivity._this).addOne(mySaveGame);
+		}
 	}
 
 	public void loadGame(SaveGame mySaveGame) {

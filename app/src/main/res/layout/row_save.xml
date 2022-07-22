@@ -83,6 +83,7 @@
             android:background="@color/Trans"
             android:gravity="center|center_vertical|right"
             android:textColor="@color/TableFore"
+            android:buttonTint="@color/TableFore"
             android:textStyle="bold"
             android:focusable="false"
             android:focusableInTouchMode="false"/>

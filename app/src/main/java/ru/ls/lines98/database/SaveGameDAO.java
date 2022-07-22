@@ -76,12 +76,29 @@ public class SaveGameDAO {
         }
     }
 
+    public int getAutoSaveId(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String SQLStatement = "SELECT "+ COLUMN_ID + " FROM " + TABLE_SAVES + " WHERE " + COLUMN_AUTO_SAVE + " = 1";
+        Cursor cursor =  db.rawQuery (SQLStatement, null);
+        GameType[] GameTypeValues  = GameType.values();
+
+        if (cursor.moveToFirst()){
+            int Score = cursor.getInt(0);
+            cursor.close();
+            db.close();
+            return Score;
+        } else {
+            cursor.close();
+            db.close();
+            return -1;
+        }
+    }
+
     public SaveGame getLast() {
         SaveGame Ret = null;
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         int Id = getMaxId();
         if (Id != -1){
-
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             String SQLStatement = "SELECT * FROM " + TABLE_SAVES + " WHERE " + COLUMN_ID + " = " + Id;
             Cursor cursor =  db.rawQuery (SQLStatement, null);
@@ -142,6 +159,31 @@ public class SaveGameDAO {
         db.close();
         return Ret;
 
+    }
+    public boolean UpdateAutoSave(SaveGame saveGame){
+        int Id = getAutoSaveId();
+        if (Id == -1){
+            return addOne(saveGame);
+        }else{
+            saveGame.setId(Id);
+            return Update(saveGame);
+        }
+    }
+    public boolean Update(SaveGame saveGame){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        cv.put(COLUMN_SAVE_DATE, saveGame.getSaveDate().getTime());
+        cv.put(COLUMN_PLAY_TIME, saveGame.getPlayTimeSeconds());
+        cv.put(COLUMN_GAME_TYPE, saveGame.getGameType().getValue());
+        cv.put(COLUMN_SCORE, saveGame.getScore());
+        cv.put(COLUMN_SAVE_CONTENT, gson.toJson(saveGame));
+        cv.put(COLUMN_AUTO_SAVE, saveGame.isAutoSave());
+
+        long result = db.update(TABLE_SAVES, cv, COLUMN_ID + " = ? ", new String[] {String.valueOf(saveGame.getId())});
+        db.close();
+        return result != 0;
     }
 
     public boolean deleteOne(SaveGame mySaveGame) {

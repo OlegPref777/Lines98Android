@@ -42,4 +42,5 @@
     <string name="SavedGames">Сохранённые игры</string>
     <string name="delete_save">Удалить сохранение</string>
     <string name="AutoSave">Автосохранение</string>
+    <string name="YuoHaveAutoSave">У Вас есть автосохранение\nВы можете загрузить, или удалить его\nМеню->Игра->Загрузить</string>
 </resources>

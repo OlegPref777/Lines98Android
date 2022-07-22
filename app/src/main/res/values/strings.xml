@@ -42,4 +42,5 @@
     <string name="SavedGames">Saved games</string>
     <string name="delete_save">Delete save</string>
     <string name="AutoSave">AutoSave</string>
+    <string name="YuoHaveAutoSave">You have an autosave\nYou can load or delete it\nMenu->Game->Load</string>
 </resources>

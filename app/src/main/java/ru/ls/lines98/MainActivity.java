@@ -26,6 +26,7 @@ import ru.ls.lines98.database.SaveGame;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -67,11 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
         GameBoard gameBoard = new GameBoard(gamePanel);
         gamePanel.setGameBoard(gameBoard);
+        if (new SaveGameDAO(this).getAutoSaveId() != -1){
+            Toast.makeText(_this, getResources().getString(R.string.YuoHaveAutoSave), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public void onBackPressed() {
         saveHighScore();
+        makeAutoSave();
         super.onBackPressed();
     }
 
@@ -130,17 +135,10 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.LoadGame){
             showLoadGameDialog();
             return true;
-//            SaveGame mySaveGame = new SaveGameDAO(MainActivity._this).getLast();
-//            if (mySaveGame != null){
-//                gamePanel.getGameBoard().loadGame(mySaveGame);
-//                return true;
-//            }else {
-//                return false;
-//            }
         }
 
         if (id == R.id.SaveGame){
-            gamePanel.getGameBoard().saveGame();
+            gamePanel.getGameBoard().saveGame(false);
             return true;
         }
 
@@ -165,6 +163,10 @@ public class MainActivity extends AppCompatActivity {
             scoreHistoryDAO.UpdateRecord(new PlayerScore(-1, new Date(), gameInfoBoard.getClock().getSeconds(), GameInfo.getCurrentInstance().getGameType(), gameInfoBoard.getScore().getScore()));
         }
     }
+    private void makeAutoSave() {
+        gamePanel.getGameBoard().saveGame(true);
+    }
+
 
     public void endGame() {
         saveHighScore();
